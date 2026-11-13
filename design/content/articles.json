@@ -1,0 +1,38 @@
+[
+ {
+  "key": "myopie",
+  "title": "Zorgtraject Myopie",
+  "kind": "Zorgtraject",
+  "img": "assets/blog-myopie-sm.jpg",
+  "md": "content/zorgpad-myopie.md",
+  "sum": "Waaraan u bijziendheid herkent bij kinderen van 4 tot 18, en wanneer doorverwijzen nodig is.",
+  "min": 2
+ },
+ {
+  "key": "strabisme",
+  "title": "Zorgtraject Strabisme",
+  "kind": "Zorgtraject",
+  "img": "assets/blog-strabisme-sm.jpg",
+  "md": "content/zorgtraject-strabisme.md",
+  "sum": "Scheelzien komt voor bij 5% van de kinderen. De symptomen, de stappen en wanneer het dringend is.",
+  "min": 2
+ },
+ {
+  "key": "amblyopie",
+  "title": "Zorgtraject Amblyopie",
+  "kind": "Zorgtraject",
+  "img": "assets/blog-amblyopie-sm.jpg",
+  "md": "content/zorgpad-amblyopie.md",
+  "sum": "Hoe een lui oog ontstaat, waarom opsporing vóór 6 jaar belangrijk is en hoe de behandeling verloopt.",
+  "min": 3
+ },
+ {
+  "key": "pseudostrabisme",
+  "title": "Pseudostrabisme (schijnbaar scheelzien) bij kinderen",
+  "kind": "Voor ouders",
+  "img": "assets/blog-pseudostrabisme-sm.jpg",
+  "md": "content/pseudostrabisme-bij-kinderen.md",
+  "sum": "Lijkt uw baby scheel te kijken? Vaak gaat het om een optische illusie, niet om een oogafwijking.",
+  "min": 2
+ }
+]

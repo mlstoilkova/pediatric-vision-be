@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#F3EFEA">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" fill="#F3EFEA"/><g transform="translate(60 60)"><path d="M-30 0c10-15 50-15 60 0-10 15-50 15-60 0z" fill="#fff" stroke="#00859C" stroke-width="4" stroke-linejoin="round"/><circle r="9" fill="#00859C"/><path d="M0-34l3.2 7.2 7.8.8-5.9 5.2 1.7 7.7L0-17l-6.8 3.9 1.7-7.7-5.9-5.2 7.8-.8z" fill="#F0B23C"/></g></svg>
+</template>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Poppins,system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:#14243D;text-wrap:pretty}
+  a{color:#1B3E70;text-decoration:none}
+  a:hover{color:#14243D}
+  img{display:block;max-width:100%}
+  button{font-family:inherit;cursor:pointer}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-10px) rotate(1.5deg)}}
+  @keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+  @keyframes twinkle{0%,100%{transform:scale(1) rotate(0deg);opacity:.9}50%{transform:scale(1.12) rotate(18deg);opacity:1}}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important}}
+  @media (max-width:820px){[data-about]{grid-template-columns:1fr !important}}
+  @media (max-width:760px){[data-desknav]{display:none !important}[data-burger]{display:inline-flex !important}}
+  @media (max-width:980px){[data-desknav] a{padding:11px 12px !important;font-size:14px !important}}
+  [data-desknav] a,[data-desknav] button{white-space:nowrap}
+  [data-hdr]{transition:padding .22s ease}
+  [data-logo] img{transition:width .22s ease}
+  @media (min-width:1101px){[data-footcity]{display:inline-block;padding:13px 0;margin:-13px 0}}
+  @media (min-width:761px) and (max-width:1100px){
+    [data-herobox]{min-height:max(490px,53vw) !important}
+    [data-heroimg]{object-position:calc(88% + 30px) center !important}
+    [data-herotext] p{max-width:19em}
+    [data-chips]{gap:8px !important}
+    [data-chips] a{font-size:15px !important;padding:0 16px !important;min-height:44px !important;height:44px}
+    [data-stepsbox]{display:grid !important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px 24px}
+    [data-stepsbox] > div:first-child{grid-column:1 / -1;margin-bottom:0 !important}
+    [data-steps]{display:contents !important}
+    [data-tipwrap]{margin:0 !important;flex-direction:column !important;flex-wrap:nowrap !important;align-items:center !important;justify-content:center !important;gap:12px !important}
+    [data-tipchar]{width:110px !important;height:auto !important;flex:0 0 auto;margin:0 !important}
+    [data-tip]{flex:0 0 auto !important;width:100%;padding:22px 20px !important}
+    [data-foot][data-footlocs]{grid-template-columns:1fr 1fr 1fr !important;gap:10px 8px !important}
+    [data-footlocs] > div:first-child{grid-column:1 / -1}
+    [data-footlocs] p{display:none !important}
+    [data-footlocs] h3{margin:0 !important}
+    [data-footcity]{display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;border:1px solid rgba(27,62,112,.18);color:#1B3E70 !important;font-size:13px}
+  }
+  @media (min-width:761px) and (max-width:820px){
+    [data-sechead]{display:block !important;position:relative !important;margin-bottom:28px !important}
+    [data-sechead] h2, [data-sechead] h2 + p{padding-right:110px}
+    [data-bird]{position:absolute !important;top:-14px;right:-6px;width:100px !important;height:auto !important;margin:0 !important}
+    [data-secup] h2{margin-top:0 !important}
+    [data-secup] [data-bird]{top:-4px}
+    [data-about]{grid-template-columns:250px minmax(0,1fr) !important;gap:28px !important;align-items:center !important}
+    [data-aboutimg]{width:250px !important;height:250px !important;align-self:start}
+    [data-about] h2{margin-bottom:14px !important}
+    [data-about] p{font-size:16px !important;line-height:1.6 !important}
+    [data-locs]{grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:14px !important}
+    [data-locs] img{height:120px !important}
+    [data-locs] a > div{padding:18px !important}
+    [data-locs] h3{font-size:17px !important;line-height:1.25}
+    [data-locs] p{font-size:15px !important}
+    [data-arts]{grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:14px !important}
+    [data-arts] a{padding:12px !important;gap:12px !important}
+    [data-arts] img{height:120px !important;border-radius:16px !important}
+    [data-arts] h3{font-size:17px !important;line-height:1.25 !important;margin:0 4px !important}
+    [data-arts] p{font-size:15px !important;line-height:1.5 !important;margin:0 4px 6px !important}
+  }
+  @media (max-width:640px){[data-pad]{padding-left:22px !important;padding-right:22px !important}}
+  @media (max-width:760px){
+    [data-herobox]{display:block !important;min-height:0 !important;background:#F3EFEA !important}
+    [data-heroimg]{position:relative !important;width:100% !important;height:300px !important;object-position:90% center !important}
+    [data-herolayer]{position:static !important;inset:auto !important;top:auto !important}
+    [data-herotext]{margin:0 !important;padding:28px 22px 36px !important;max-width:none !important}
+    [data-herotext] h1{font-size:clamp(25px,7.2vw,34px) !important;line-height:1.16 !important;overflow-wrap:break-word;hyphens:auto}
+    [data-herotext] span[data-comment-anchor]{white-space:normal !important}
+    [data-steps]{grid-template-columns:minmax(0,1fr) !important;padding-left:12px !important;gap:36px !important}
+    [data-tipwrap]{display:block !important;margin-top:28px !important}
+    [data-tipwrap]::after{content:"";display:block;clear:both}
+    [data-tipchar]{float:right;width:104px !important;height:auto !important;margin:0 -4px 4px 14px !important;shape-outside:margin-box}
+    [data-tip]{background:none !important;padding:6px 0 0 !important;border-radius:0 !important}
+    [data-tip] p{font-size:15.5px !important;line-height:1.6 !important}
+    [data-tiplead]{display:block;font-weight:700 !important;color:#14243D !important;font-size:18px;line-height:1.3;margin-bottom:6px}
+    [data-tiplead] + br{display:none}
+    [data-stepsbox]{padding:28px 16px 24px !important}
+    [data-steps] p{font-size:15px !important;line-height:1.6 !important}
+    [data-aboutimg]{width:100% !important;height:auto !important;max-width:340px !important;aspect-ratio:1/1 !important}
+    [data-first]{padding-top:44px !important}
+    [data-char]{width:104px !important;height:auto !important;margin-top:0 !important;margin-bottom:0 !important}
+    [data-chips]{gap:8px !important}
+    [data-chips] a{font-size:15px !important;padding:0 16px !important;min-height:44px !important;height:44px}
+    [data-hdr]{display:grid !important;grid-template-columns:1fr auto 1fr !important;align-items:center !important;padding:10px 18px !important;gap:0 10px !important}
+    [data-hdrrow]{display:contents !important}
+    [data-hdrrow] > span{display:none !important}
+    [data-logo]{grid-column:2;grid-row:1;justify-self:center;margin:0 !important}
+    [data-logo] img{width:112px !important}
+    [data-burger]{grid-column:1 !important;grid-row:1;justify-self:start !important}
+    [data-mlang]{display:flex !important;grid-column:3;grid-row:1;justify-self:end}
+    [data-hdr][data-shrunk="true"]{padding:5px 18px !important}
+    [data-hdr][data-shrunk="true"] [data-logo] img{width:86px !important}
+    [data-hdr][data-shrunk="true"] [data-mlang]{display:none !important}
+    [data-foot][data-footlocs]{grid-template-columns:1fr 1fr 1fr !important;gap:10px 8px !important}
+    [data-footlocs] > div:first-child{grid-column:1 / -1}
+    [data-footlocs] p{display:none !important}
+    [data-footlocs] h3{margin:0 !important}
+    [data-footcity]{display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;border:1px solid rgba(27,62,112,.18);color:#1B3E70 !important;font-size:13px}
+    [data-foot]{gap:28px !important}
+    [data-locs]{gap:12px !important}
+    [data-locs] img{height:110px !important}
+    [data-locs] a > div{padding:18px 22px 20px !important}
+    [data-arts]{display:flex !important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 22px;gap:12px !important;margin:0 -22px;padding:0 22px 6px;scrollbar-width:none}
+    [data-arts]::-webkit-scrollbar{display:none}
+    [data-arts] > a{flex:0 0 78%;scroll-snap-align:start}
+    [data-arts] img{height:150px !important}
+    [data-sechead]{display:block !important;position:relative !important;margin-bottom:28px !important}
+    [data-sechead] h2{padding-right:84px}
+    [data-sechead] h2 + p{padding-right:84px}
+    [data-secup] h2{margin-top:0 !important}
+    [data-secup] [data-bird]{top:-4px}
+    [data-bird]{position:absolute !important;top:-14px;right:-6px;width:80px !important;height:auto !important;margin:0 !important}
+    [data-herobox]{position:relative !important}
+    [data-herobox]::after{content:"";position:absolute;left:22px;right:22px;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(27,62,112,.18) 18%,rgba(27,62,112,.18) 82%,transparent)}
+    main h2, section h2, h2{font-size:clamp(25px,7.2vw,34px) !important;line-height:1.16 !important;hyphens:auto}
+    h2 + p[style*="28px"]{font-size:clamp(17px,4.6vw,21px) !important}
+    h3[style*="clamp(20px"]{font-size:clamp(19px,5.2vw,22px) !important}
+    a > h3, [data-pad] h3[style*="21px"]{font-size:clamp(18px,5vw,20px) !important}
+  }
+</style>
+<style>
+  @media (max-width:760px){
+    [data-pagehead]{display:block !important;position:relative}
+    [data-pagehead] h1, [data-pagehead] h1 + p, [data-pagehead] span{padding-right:84px}
+    [data-pagechar]{position:absolute;top:18px;right:-6px;width:80px !important}
+    [data-two]{grid-template-columns:minmax(0,1fr) !important}
+    [data-two] > img{order:0 !important;height:210px !important;min-height:0 !important}
+    [data-tl] > div{grid-template-columns:minmax(0,1fr) !important;gap:4px !important}
+  }
+</style>
+</helmet>
+
+<div style="position: relative; background-color: #F3EFEA; padding-left: 6px; padding-right: 6px; padding-top: 0px; padding-bottom: 0px; width: 100%; overflow-x: clip">
+
+  <header style="position: sticky; top: 0; z-index: 60; backdrop-filter: blur(10px); background-color: #F3EFEAF2">
+    <div data-pad="" data-hdr="" data-shrunk="{{ shrunk }}" style="max-width:1280px;margin:0 auto;padding:16px 40px 12px;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <a href="Home%20FR.dc.html" data-logo="" style="display:block"><img src="assets/logo.svg" alt="Pediatric Vision" style="width:154px"></a>
+      <div data-hdrrow="" style="width:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px">
+      <span></span>
+      <nav data-desknav="" style="display:flex;align-items:center;gap:8px">
+        <a href="Home%20FR.dc.html" style="font-size:15px;font-weight:500;color:#1B3E70;padding:11px 18px;border-radius:999px" style-hover="background:#F9DDD8">Accueil</a>
+        <a href="Aandoeningen%20FR.dc.html" style="font-size:15px;font-weight:600;color:#14243D;padding:11px 18px;border-radius:999px;background:#F9DDD8">Rendez-vous</a>
+        <a href="Over%20mij%20FR.dc.html" style="font-size:15px;font-weight:500;color:#1B3E70;padding:11px 18px;border-radius:999px" style-hover="background:#F9DDD8">À propos</a>
+        <a href="Afspraak%20FR.dc.html" style="font-size:15px;font-weight:500;color:#1B3E70;padding:11px 18px;border-radius:999px" style-hover="background:#F9DDD8">Affections</a>
+      </nav>
+      <div data-desknav="" style="display:flex;align-items:center;gap:12px;position:relative;justify-self:end">
+        <button onClick="{{ toggleLang }}" style="display:flex;align-items:center;gap:7px;background:#FFFDFA;border:0;border-radius:999px;padding:12px 15px;font-size:14px;font-weight:600;color:#1B3E70;min-height:44px">
+          <span>{{ langCur }}</span><span style="font-size:12px;opacity:.7">▼</span>
+        </button>
+        <sc-if value="{{ langOpen }}">
+          <div style="position:absolute;top:58px;right:0;background:#FFFDFA;border-radius:18px;box-shadow:0 16px 38px rgba(20,36,61,.16);padding:6px;min-width:150px;display:flex;flex-direction:column">
+            <button onClick="{{ pickNL }}" style="text-align:left;background:transparent;border:0;border-radius:12px;padding:11px 12px;font-size:14px;font-weight:600;color:#14243D;min-height:44px" style-hover="background:#FDF3EA">Nederlands</button>
+            <button onClick="{{ pickEN }}" style="text-align:left;background:transparent;border:0;border-radius:12px;padding:11px 12px;font-size:14px;font-weight:500;color:#1B3E70;min-height:44px" style-hover="background:#FDF3EA">English</button>
+            <button onClick="{{ pickFR }}" style="text-align:left;background:transparent;border:0;border-radius:12px;padding:11px 12px;font-size:14px;font-weight:500;color:#1B3E70;min-height:44px" style-hover="background:#FDF3EA">Français</button>
+          </div>
+        </sc-if>
+        
+      </div>
+      <div data-mlang="" style="display:none;align-items:center;position:relative">
+        <button onClick="{{ toggleLang }}" aria-label="Choisir la langue" style="display:flex;align-items:center;gap:6px;background:transparent;border:1px solid #E2DBD1;border-radius:999px;padding:0 13px;min-height:42px;font-size:13px;font-weight:600;color:#00788C"><span>{{ langCur }}</span><span style="font-size:12px;opacity:.7">▼</span></button>
+        <sc-if value="{{ langOpen }}">
+          <div style="position:absolute;top:50px;right:0;z-index:60;background:#FFFDFA;border-radius:18px;box-shadow:0 16px 38px rgba(20,36,61,.16);padding:6px;min-width:150px;display:flex;flex-direction:column">
+            <button onClick="{{ pickNL }}" style="text-align:left;background:transparent;border:0;border-radius:12px;padding:11px 12px;font-size:14px;font-weight:500;color:#1B3E70;min-height:44px" style-hover="background:#FDF3EA">Nederlands</button>
+            <button onClick="{{ pickEN }}" style="text-align:left;background:transparent;border:0;border-radius:12px;padding:11px 12px;font-size:14px;font-weight:500;color:#1B3E70;min-height:44px" style-hover="background:#FDF3EA">English</button>
+            <button onClick="{{ pickFR }}" style="text-align:left;background:transparent;border:0;border-radius:12px;padding:11px 12px;font-size:14px;font-weight:500;color:#1B3E70;min-height:44px" style-hover="background:#FDF3EA">Français</button>
+          </div>
+        </sc-if>
+      </div>
+      <button data-burger="" onClick="{{ toggleMenu }}" style="display:none;justify-self:end;grid-column:3;align-items:center;justify-content:center;width:46px;height:46px;border:0;border-radius:14px;background:#FFFDFA;color:#1B3E70;font-size:18px">☰</button>
+      </div>
+    </div>
+    <sc-if value="{{ menuOpen }}">
+      <div style="padding:8px 22px 24px;display:flex;flex-direction:column;gap:6px">
+        <a href="Home%20FR.dc.html" style="font-size:17px;font-weight:500;padding:14px 18px;border-radius:16px;background:#FFFDFA">Accueil</a>
+        <a href="Aandoeningen%20FR.dc.html" style="font-size:17px;font-weight:600;padding:14px 18px;border-radius:16px;background:#F9DDD8">Rendez-vous</a>
+        <a href="Over%20mij%20FR.dc.html" style="font-size:17px;font-weight:500;padding:14px 18px;border-radius:16px;background:#FFFDFA">À propos</a>
+        <a href="Afspraak%20FR.dc.html" style="font-size:17px;font-weight:500;padding:14px 18px;border-radius:16px;background:#FFFDFA">Affections</a>
+        <a href="Aandoeningen%20FR.dc.html" style="margin-top:6px;background:#F48D99;color:#14243D;border-radius:999px;padding:16px 22px;font-size:16px;font-weight:700;text-align:center">Prendre rendez-vous</a>
+      </div>
+    </sc-if>
+  </header>
+  <section data-pad="" style="max-width:1280px;margin:0 auto;padding:clamp(36px,5vw,72px) 40px 0">
+    <div data-pagehead="" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 32px">
+      <div style="flex:1 1 420px;min-width:0;max-width:46em;display:flex;flex-direction:column;gap:16px">
+        <span style="display:block;font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Prendre rendez-vous</span>
+        <h1 style="margin:0;font-size:clamp(30px,4.2vw,56px);line-height:1.12;letter-spacing:-.025em;font-weight:700;color:#14243D;overflow-wrap:break-word;hyphens:auto">Cliniques</h1>
+        <p style="margin:0;font-size:18px;line-height:1.65;color:#41536D;max-width:36em">Voici les cliniques où je reçois les patients. Pour toute question, n’hésitez pas à appeler. Vous pouvez prendre rendez-vous via le lien de chaque clinique.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:6px"><a href="#leuven" style="background:#FFFDFA;border-radius:999px;padding:0 20px;height:48px;font-size:16px;font-weight:600;color:#14243D;display:inline-flex;align-items:center" style-hover="background:#F48D99">Louvain</a><a href="#brussel" style="background:#FFFDFA;border-radius:999px;padding:0 20px;height:48px;font-size:16px;font-weight:600;color:#14243D;display:inline-flex;align-items:center" style-hover="background:#F48D99">Bruxelles</a><a href="#aarschot" style="background:#FFFDFA;border-radius:999px;padding:0 20px;height:48px;font-size:16px;font-weight:600;color:#14243D;display:inline-flex;align-items:center" style-hover="background:#F48D99">Aarschot</a></div>
+      </div>
+      <img src="./character-locations-muayh6ue-f1yr.png" alt="" data-pagechar="" style="width:clamp(110px,12vw,160px);height:auto;flex:0 0 auto;animation:bob 8s ease-in-out infinite">
+    </div>
+  </section>
+  <section data-pad="" style="max-width:1280px;margin:0 auto;padding:clamp(36px,4vw,56px) 40px 0;display:flex;flex-direction:column;gap:24px">
+    <article id="leuven" data-two="" style="background:#FFFDFA;border-radius:28px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);scroll-margin-top:150px">
+      <img src="assets/clinic-leuven-sm.jpg" alt="Oogartsenpraktijk, Louvain" style="width:100%;height:100%;min-height:360px;object-fit:cover;order:0">
+      <div style="padding:clamp(24px,3.4vw,52px);display:flex;flex-direction:column;justify-content:center;gap:18px;order:1">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="display:block;font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Louvain</span>
+          <h2 style="margin:0;font-size:clamp(26px,2.6vw,36px);line-height:1.12;letter-spacing:-.02em;font-weight:700;color:#14243D">Oogartsenpraktijk</h2>
+          <a href="https://oogartsenleuven.be/" target="_blank" rel="noopener" style="align-self:flex-start;font-size:16px;color:#00788C;text-decoration:underline;text-underline-offset:3px;padding:6px 0">oogartsenleuven.be↗</a>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid #F1EAE1"><span style="font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#5B6C85">Adresse</span><div style="font-size:16px;line-height:1.6;color:#14243D"><a href="https://www.google.com/maps/place/Ophthalmologist+Delaere+-+Gillis+-+Verstraeten/@50.8839903,4.7207643,676m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47c1672dd8edcedd:0x2734968b1eaa695c!8m2!3d50.8839903!4d4.7233446!16s%2Fg%2F12hr56sld" target="_blank" rel="noopener" style="color:#14243D;text-decoration:underline;text-decoration-color:rgba(27,62,112,.3);text-underline-offset:4px">Diestsesteenweg 104D<br>3010 Kessel-Lo</a></div></div>
+          <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid #F1EAE1"><span style="font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#5B6C85">Téléphone</span><div style="font-size:16px;line-height:1.6;color:#14243D"><a href="tel:016465608" style="color:#14243D;font-weight:600;display:inline-flex;min-height:28px;align-items:center">✆ 016 46 56 08</a></div></div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;padding-top:4px">
+          <a href="https://sanmax.afsprakenbeheer.be/e/aHN0UVJrME14VXVnbXRmNHRzbE9EVDRpT2pFRWFUNU0xZmJLNVAyaVZ2YUx2dGFzTElubWFBPT0%3D" target="_blank" rel="noopener" style="background:#F48D99;color:#14243D;border-radius:999px;padding:17px 30px;font-size:16px;font-weight:700;min-height:44px;display:inline-flex;align-items:center;gap:6px" style-hover="background:#EF7382">Prendre rendez-vous <span style="font-weight:400">↗</span></a>
+        </div>
+      </div>
+    </article>
+    <article id="brussel" data-two="" style="background:#FFFDFA;border-radius:28px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);scroll-margin-top:150px">
+      <img src="assets/clinic-brussel-sm.jpg" alt="Brussels Eye Doctors, Bruxelles" style="width:100%;height:100%;min-height:360px;object-fit:cover;order:2">
+      <div style="padding:clamp(24px,3.4vw,52px);display:flex;flex-direction:column;justify-content:center;gap:18px;order:1">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="display:block;font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Bruxelles</span>
+          <h2 style="margin:0;font-size:clamp(26px,2.6vw,36px);line-height:1.12;letter-spacing:-.02em;font-weight:700;color:#14243D">Brussels Eye Doctors</h2>
+          <a href="https://brusselseyedoctors.be/" target="_blank" rel="noopener" style="align-self:flex-start;font-size:16px;color:#00788C;text-decoration:underline;text-underline-offset:3px;padding:6px 0">brusselseyedoctors.be↗</a>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid #F1EAE1"><span style="font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#5B6C85">Adresse</span><div style="font-size:16px;line-height:1.6;color:#14243D"><a href="https://maps.app.goo.gl/4Zq3ADfTWVvQdWDE8" target="_blank" rel="noopener" style="color:#14243D;text-decoration:underline;text-decoration-color:rgba(27,62,112,.3);text-underline-offset:4px">Avenue Saint-Michel 12-16<br>1150 Woluwe-Saint-Pierre</a></div></div>
+          <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid #F1EAE1"><span style="font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#5B6C85">Téléphone</span><div style="font-size:16px;line-height:1.6;color:#14243D"><a href="tel:027416999" style="color:#14243D;font-weight:600;display:inline-flex;min-height:28px;align-items:center">✆ 02 741 69 99</a></div></div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;padding-top:4px">
+          <a href="https://rosa.be/nl/booking/hp/irina-balikova/is-new-patient/?site=63c568d0056d670bc979eca5&amp;skipped-steps=site" target="_blank" rel="noopener" style="background:#F48D99;color:#14243D;border-radius:999px;padding:17px 30px;font-size:16px;font-weight:700;min-height:44px;display:inline-flex;align-items:center;gap:6px" style-hover="background:#EF7382">Prendre rendez-vous <span style="font-weight:400">↗</span></a>
+        </div>
+      </div>
+    </article>
+    <article id="aarschot" data-two="" style="background:#FFFDFA;border-radius:28px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);scroll-margin-top:150px">
+      <img src="assets/clinic-aarschot-sm.jpg" alt="Medisch Centrum Aarschot, Aarschot" style="width:100%;height:100%;min-height:360px;object-fit:cover;order:0">
+      <div style="padding:clamp(24px,3.4vw,52px);display:flex;flex-direction:column;justify-content:center;gap:18px;order:1">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="display:block;font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Aarschot</span>
+          <h2 style="margin:0;font-size:clamp(26px,2.6vw,36px);line-height:1.12;letter-spacing:-.02em;font-weight:700;color:#14243D">Medisch Centrum Aarschot</h2>
+          <a href="https://www.rztienen.be/nl/zorgaanbod/artsen/balikova-irina/" target="_blank" rel="noopener" style="align-self:flex-start;font-size:16px;color:#00788C;text-decoration:underline;text-underline-offset:3px;padding:6px 0">rztienen.be↗</a>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid #F1EAE1"><span style="font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#5B6C85">Adresse</span><div style="font-size:16px;line-height:1.6;color:#14243D"><a href="https://maps.app.goo.gl/5RuNK3Fz7Y4KQNav5" target="_blank" rel="noopener" style="color:#14243D;text-decoration:underline;text-decoration-color:rgba(27,62,112,.3);text-underline-offset:4px">Langdorpsesteenweg 129<br>3200 Aarschot</a></div></div>
+          <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 0;border-top:1px solid #F1EAE1"><span style="font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#5B6C85">Téléphone</span><div style="font-size:16px;line-height:1.6;color:#14243D"><a href="tel:016551771" style="color:#14243D;font-weight:600;display:inline-flex;min-height:28px;align-items:center">✆ 016 55 17 71</a></div></div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;padding-top:4px">
+          <a href="https://www.rztienen.be/nl/zorgaanbod/artsen/balikova-irina" target="_blank" rel="noopener" style="background:#F48D99;color:#14243D;border-radius:999px;padding:17px 30px;font-size:16px;font-weight:700;min-height:44px;display:inline-flex;align-items:center;gap:6px" style-hover="background:#EF7382">Prendre rendez-vous <span style="font-weight:400">↗</span></a>
+        </div>
+      </div>
+    </article>
+  </section>
+  <section data-pad="" style="max-width:1280px;margin:0 auto;padding:clamp(56px,7vw,96px) 40px 0;padding-bottom:clamp(56px,7vw,96px)">
+    <div data-tipwrap="" style="background:#BFE3E0;border-radius:16px;padding:clamp(24px,3.4vw,44px);display:flex;flex-wrap:wrap;align-items:center;gap:20px 32px">
+      <img src="./character-juggling-mua9atlp-ni4j.png" alt="" style="width:clamp(96px,10vw,130px);height:auto;flex:0 0 auto">
+      <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:12px;align-items:flex-start">
+        <span style="display:inline-block;background:#F48D99;color:#14243D;border-radius:999px;padding:9px 18px;font-size:15px;font-weight:700">Comptez 1 à 1,5 heure</span>
+        <p style="margin:0;font-size:18px;line-height:1.6;color:#14243D">Lors d’une première consultation, nous utilisons des gouttes qui doivent agir au moins 30 minutes. Prévoyez donc suffisamment de temps.</p>
+        <p style="margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:0 8px;font-size:16px;line-height:1.5;color:#14243D"><span>D’autres questions ?</span><a href="FAQ%20FR.dc.html#oogonderzoek" style="display:inline-flex;align-items:center;gap:6px;min-height:44px;font-weight:600;color:#1B3E70;text-decoration:underline;text-underline-offset:3px">Consultez les questions fréquentes</a></p>
+      </div>
+      <a href="Home%20FR.dc.html#verwachtenB" style="background:#FFFDFA;color:#1B3E70;border-radius:999px;padding:17px 26px;font-size:16px;font-weight:600;min-height:44px;display:inline-flex;align-items:center" style-hover="background:#F9DDD8">À quoi vous attendre</a>
+    </div>
+  </section>
+  <footer data-pad="" style="background: #FFFDFA; padding: 60px 40px 40px; padding-right: 40px; display: block">
+    <div data-foot="" data-footlocs="" style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:36px">
+      <div style="max-width:24em">
+        <img src="assets/logo.svg" alt="Pediatric Vision" style="width:150px;margin-bottom:16px">
+        
+      </div>
+      <div>
+        <h3 style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#14243D"><a data-footcity="" href="Aandoeningen%20FR.dc.html#leuven" style="color:inherit">Louvain</a></h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #5B6C85; font-weight: 600">Oogartsenpraktijk</p><p style="margin:0;font-size:16px;line-height:1.65;color:#5B6C85">Diestsesteenweg 104D<br>3010 Kessel-Lo<br>✆ 016 46 56 08</p>
+      </div>
+      <div>
+        <h3 style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#14243D"><a data-footcity="" href="Aandoeningen%20FR.dc.html#brussel" style="color:inherit">Bruxelles</a></h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #5B6C85; font-weight: 600">Brussels Eye Doctors</p><p style="margin:0;font-size:16px;line-height:1.65;color:#5B6C85">Avenue Saint-Michel 12-16<br>1150 Woluwe-Saint-Pierre<br>✆ 02 741 69 99</p>
+      </div>
+      <div>
+        <h3 style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#14243D"><a data-footcity="" href="Aandoeningen%20FR.dc.html#aarschot" style="color:inherit">Aarschot</a></h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #5B6C85; font-weight: 600">Medisch Centrum Aarschot</p><p style="margin:0;font-size:16px;line-height:1.65;color:#5B6C85">Langdorpsesteenweg 129<br>3200 Aarschot<br>✆ 016 55 17 71</p>
+      </div>
+    </div>
+    <div style="max-width:1280px;margin:40px auto 0;padding-top:24px;border-top:1px solid #F1EAE1;display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center">
+      <a href="#" style="font-size:15px;color:#5B6C85;display:inline-flex;align-items:center;min-height:44px">Politique de confidentialité</a>
+      <a href="FAQ%20FR.dc.html" style="font-size:15px;color:#5B6C85;display:inline-flex;align-items:center;min-height:44px">FAQ</a>
+      <span style="font-size:15px;color:#98A4B6;margin-left:auto">© 2026 Pediatric Vision</span>
+    </div>
+  </footer>
+</div>
+
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { menuOpen: false, langOpen: false, langCur: 'FR', shrunk: false };
+
+  goLang(l) {
+    if (l === this.state.langCur) { this.setState({ langOpen: false, menuOpen: false }); return; }
+    location.href = { NL: 'Aandoeningen.dc.html', EN: 'Aandoeningen%20EN.dc.html', FR: 'Aandoeningen%20FR.dc.html' }[l] + location.search + location.hash;
+  }
+  componentDidMount() {
+    this.onScroll = () => {
+      const s = window.scrollY > 260;
+      if (s !== this.state.shrunk) this.setState({ shrunk: s });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    if (location.hash) setTimeout(() => { const el = document.getElementById(decodeURIComponent(location.hash.slice(1))); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 120 }); }, 350);
+    this.onScroll();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+  }
+  renderVals() {
+    const set = (o) => this.setState(o);
+    return {
+      shrunk: this.state.shrunk,
+      menuOpen: this.state.menuOpen,
+      langOpen: this.state.langOpen,
+      langCur: this.state.langCur,
+      toggleMenu: () => set({ menuOpen: !this.state.menuOpen, langOpen: false }),
+      toggleLang: () => set({ langOpen: !this.state.langOpen }),
+      mlangNL: 'border:0;border-radius:999px;padding:9px 11px;font-size:13px;min-width:42px;min-height:42px;' + (this.state.langCur === 'NL' ? 'background:#00788C;color:#FFFFFF;font-weight:600' : 'background:transparent;color:#5B6C85;font-weight:500'),
+      mlangEN: 'border:0;border-radius:999px;padding:9px 11px;font-size:13px;min-width:42px;min-height:42px;' + (this.state.langCur === 'EN' ? 'background:#00788C;color:#FFFFFF;font-weight:600' : 'background:transparent;color:#5B6C85;font-weight:500'),
+      pickNL: () => this.goLang('NL'),
+      pickEN: () => this.goLang('EN'),
+      pickFR: () => this.goLang('FR'),
+      mlangFR: 'border:0;border-radius:999px;padding:9px 11px;font-size:13px;min-width:42px;min-height:42px;' + (this.state.langCur === 'FR' ? 'background:#00788C;color:#FFFFFF;font-weight:600' : 'background:transparent;color:#5B6C85;font-weight:500')
+    };
+  }
+}
+
+</script>
+</body>
+</html>

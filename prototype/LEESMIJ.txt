@@ -1,0 +1,7 @@
+Pediatric Vision — klikbaar prototype (NL / EN / FR)
+
+Openen: dubbelklik op index.html (werkt offline).
+Online delen: sleep deze map naar https://app.netlify.com/drop
+
+Pagina's: index (Home) · afspraak (klinieken) · aandoeningen (Zorg voor kinderogen) · over-mij · artikel?a=myopie|strabisme|amblyopie|pseudostrabisme · faq
+EN: en-… · FR: fr-…

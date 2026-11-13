@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Pediatric Vision — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Poppins,system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:#14243D;background:#F3EFEA;text-wrap:pretty}
+  a{color:#1B3E70;text-decoration:none}
+  a:hover{color:#14243D}
+  code{font-family:ui-monospace,Menlo,monospace;font-size:.86em;background:#FFFDFA;border:1px solid #E2DBD1;border-radius:6px;padding:1px 6px;color:#1B3E70}
+</style>
+</helmet>
+
+<div style="max-width:1180px;margin:0 auto;padding:48px clamp(20px,4vw,48px) 96px;display:flex;flex-direction:column;gap:72px">
+
+  <header style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:14px;max-width:40em">
+      <img src="assets/logo.svg" alt="Pediatric Vision" style="width:150px">
+      <h1 style="margin:0;font-size:clamp(32px,4vw,52px);line-height:1.1;letter-spacing:-.025em;font-weight:700">Mini design system</h1>
+      <p style="margin:0;font-size:18px;line-height:1.6;color:#41536D">The homepage's elements and how they behave per device, for building Aandoeningen, Over mij and Afspraak. Professional, warm, clean, playful and contemporary. The playfulness comes from the characters and colour; the interface stays calm.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <span style="border:1px solid #1B3E70;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:500;color:#1B3E70">≤760 mobile</span>
+      <span style="border:1px solid #1B3E70;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:500;color:#1B3E70">761–1100 tablet</span>
+      <span style="border:1px solid #1B3E70;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:500;color:#1B3E70">&gt;1100 desktop</span>
+    </div>
+  </header>
+
+  <section id="color" style="display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;align-items:baseline;gap:14px"><span style="font-size:13px;font-weight:700;letter-spacing:.11em;color:#00788C">01</span><h2 style="margin:0;font-size:clamp(25px,3vw,36px);letter-spacing:-.02em;font-weight:700">Colour</h2></div>
+    <p style="margin:0;font-size:16px;line-height:1.6;color:#5B6C85;max-width:44em">Warm neutrals carry the page. Coral is the action colour, navy is for text and links, and mint panels group content. Avoid "medical blue" fills, and use one accent per section.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px">
+      <div style="background:#FFFDFA;border-radius:20px;overflow:hidden"><div style="height:72px;background:#F3EFEA;border-bottom:1px solid #E2DBD1"></div><div style="padding:12px 14px"><div style="font-size:14px;font-weight:600">Page</div><div style="font-size:13px;color:#5B6C85">#F3EFEA</div></div></div>
+      <div style="background:#FFFDFA;border-radius:20px;overflow:hidden;border:1px solid #E2DBD1"><div style="height:72px;background:#FFFDFA;border-bottom:1px solid #E2DBD1"></div><div style="padding:12px 14px"><div style="font-size:14px;font-weight:600">Card / cream</div><div style="font-size:13px;color:#5B6C85">#FFFDFA</div></div></div>
+      <div style="background:#FFFDFA;border-radius:20px;overflow:hidden"><div style="height:72px;background:#FDF3EA"></div><div style="padding:12px 14px"><div style="font-size:14px;font-weight:600">Peach / soft btn</div><div style="font-size:13px;color:#5B6C85">#FDF3EA</div></div></div>
+      <div style="background:#FFFDFA;border-radius:20px;overflow:hidden"><div style="height:72px;background:#F9DDD8"></div><div style="padding:12px 14px"><div style="font-size:14px;font-weight:600">Blush / hover</div><div style="font-size:13px;color:#5B6C85">#F9DDD8</div></div></div>
+      <div style="background:#FFFDFA;border-radius:20px;overflow:hidden"><div style="height:72px;background:#F48D99"></div><div style="padding:12px 14px"><div style="font-size:14px;font-weight:600">Coral / action</div><div style="font-size:13px;color:#5B6C85">#F48D99 · hover #EF7382</div></div></div>
+      <div style="background:#FFFDFA;border-radius:20px;overflow:hidden"><div style="height:72px;background:#BFE3E0"></div><div style="padding:12px 14px"><div style="font-size:14px;font-weight:600">Mint panel</div><div style="font-size:13px;color:#5B6C85">#BFE3E0</div></div></div>
+      <div style="background:#FFFDFA;border-radius:20px;overflow:hidden"><div style="height:72px;background:#E0F0F0"></div><div style="padding:12px 14px"><div style="font-size:14px;font-weight:600">Mint light</div><div style="font-size:13px;color:#5B6C85">#E0F0F0 · badge #E4F1F0</div></div></div>
+      <div style="background:#FFFDFA;border-radius:20px;overflow:hidden"><div style="height:72px;background:#00859C"></div><div style="padding:12px 14px"><div style="font-size:14px;font-weight:600">Teal (brand)</div><div style="font-size:13px;color:#5B6C85">#00859C · text #00788C</div></div></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px">
+      <div style="background:#14243D;color:#FFFDFA;border-radius:20px;padding:18px"><div style="font-size:14px;font-weight:600">Ink · #14243D</div><div style="font-size:13px;opacity:.85">Headings, chip text</div></div>
+      <div style="background:#1B3E70;color:#FFFDFA;border-radius:20px;padding:18px"><div style="font-size:14px;font-weight:600">Navy · #1B3E70</div><div style="font-size:13px;opacity:.85">Links, labels, dark button</div></div>
+      <div style="background:#41536D;color:#FFFDFA;border-radius:20px;padding:18px"><div style="font-size:14px;font-weight:600">Body · #41536D</div><div style="font-size:13px;opacity:.85">Lead &amp; long-form text</div></div>
+      <div style="background:#5B6C85;color:#FFFDFA;border-radius:20px;padding:18px"><div style="font-size:14px;font-weight:600">Muted · #5B6C85</div><div style="font-size:13px;opacity:.85">Card text, meta</div></div>
+    </div>
+    <p style="margin:0;font-size:14px;color:#5B6C85">Hairlines: <code>#E2DBD1</code> or <code>rgba(27,62,112,.18)</code>. Teal text on light backgrounds uses <code>#00788C</code> for 4.5:1 contrast.</p>
+  </section>
+
+  <section id="type" style="display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;align-items:baseline;gap:14px"><span style="font-size:13px;font-weight:700;letter-spacing:.11em;color:#00788C">02</span><h2 style="margin:0;font-size:clamp(25px,3vw,36px);letter-spacing:-.02em;font-weight:700">Typography — Poppins</h2></div>
+    <div style="background:#FFFDFA;border-radius:28px;padding:clamp(20px,3vw,36px);display:flex;flex-direction:column">
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,220px);gap:8px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid #E2DBD1">
+        <div style="font-size:clamp(32px,4vw,58px);line-height:1.2;letter-spacing:-.025em;font-weight:700">Kinderoogheelkunde</div>
+        <div style="font-size:13px;line-height:1.5;color:#5B6C85"><strong style="color:#14243D">H1 · Hero</strong><br>700 · −.025em · lh 1.2<br>clamp(32px,4vw,58px)<br>mobile clamp(25px,7.2vw,34px)</div>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,220px);gap:8px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid #E2DBD1">
+        <div style="font-size:clamp(28px,3.4vw,46px);line-height:1.08;letter-spacing:-.02em;font-weight:700">Drie locaties</div>
+        <div style="font-size:13px;line-height:1.5;color:#5B6C85"><strong style="color:#14243D">H2 · Section</strong><br>700 · −.02em · lh 1.08<br>clamp(28px,3.4vw,46px)<br>mobile = hero size</div>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,220px);gap:8px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid #E2DBD1">
+        <div style="font-size:clamp(20px,1.7vw,26px);font-weight:700;line-height:1.2">Oogdruppels</div>
+        <div style="font-size:13px;line-height:1.5;color:#5B6C85"><strong style="color:#14243D">H3 · Step</strong><br>700 · clamp(20px,1.7vw,26px)<br>mobile 19–22px</div>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,220px);gap:8px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid #E2DBD1">
+        <div style="font-size:21px;font-weight:600;line-height:1.28">Zorgtraject Strabisme</div>
+        <div style="font-size:13px;line-height:1.5;color:#5B6C85"><strong style="color:#14243D">H3 · Card</strong><br>600 · 21px · lh 1.28<br>tablet-768 17px · mobile 18–20px</div>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,220px);gap:8px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid #E2DBD1">
+        <div style="font-size:18px;line-height:1.65;color:#41536D">Ik ontvang patiënten in Leuven, Brussel en Aarschot.</div>
+        <div style="font-size:13px;line-height:1.5;color:#5B6C85"><strong style="color:#14243D">Lead</strong><br>400 · 18px · lh 1.6–1.7 · #41536D<br>tablet-768 16px</div>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,220px);gap:8px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid #E2DBD1">
+        <div style="font-size:16px;line-height:1.65;color:#5B6C85">Deze druppels moeten tenminste 30 minuten inwerken.</div>
+        <div style="font-size:13px;line-height:1.5;color:#5B6C85"><strong style="color:#14243D">Body</strong><br>400 · 16px · lh 1.6–1.65 · #5B6C85<br>mobile 15px in steps</div>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,220px);gap:8px 24px;align-items:baseline;padding:18px 0 4px">
+        <div style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Leuven · Over mij</div>
+        <div style="font-size:13px;line-height:1.5;color:#5B6C85"><strong style="color:#14243D">Eyebrow</strong><br>700 · 13px · .09–.11em · uppercase<br>13px is the floor for text</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="layout" style="display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;align-items:baseline;gap:14px"><span style="font-size:13px;font-weight:700;letter-spacing:.11em;color:#00788C">03</span><h2 style="margin:0;font-size:clamp(25px,3vw,36px);letter-spacing:-.02em;font-weight:700">Layout, spacing, radius</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+      <div style="background:#FFFDFA;border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55;color:#41536D">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Grid</span>
+        <div>Content max-width <code>1280px</code></div>
+        <div>Side padding <code>40px</code> → <code>22px</code> ≤640</div>
+        <div>Section top <code>clamp(56px,7vw,96px)</code></div>
+        <div>Heading → content <code>34–40px</code> (mobile 28)</div>
+        <div>Card gap <code>18</code> desktop · <code>14</code> tablet · <code>12</code> mobile</div>
+        <div>Chip gap <code>12</code> → <code>8</code> tablet/mobile</div>
+      </div>
+      <div style="background:#FFFDFA;border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Radius</span>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;font-size:13px;color:#5B6C85;text-align:center">
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:center"><div style="width:100%;height:44px;background:#F9DDD8;border-radius:999px"></div>999 · pills</div>
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:center"><div style="width:100%;height:44px;background:#F9DDD8;border-radius:36px"></div>36 · CTA</div>
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:center"><div style="width:100%;height:44px;background:#F9DDD8;border-radius:28px"></div>28 · cards</div>
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:center"><div style="width:100%;height:44px;background:#F9DDD8;border-radius:26px"></div>26 · step/tip</div>
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:center"><div style="width:100%;height:44px;background:#F9DDD8;border-radius:20px"></div>20–22 · photos</div>
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:center"><div style="width:100%;height:44px;background:#F9DDD8;border-radius:16px"></div>16 · panels</div>
+        </div>
+      </div>
+      <div style="background:#FFFDFA;border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55;color:#41536D">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Surface &amp; depth</span>
+        <div>Flat by default: no shadows or borders on cards. Cream cards sit on the page, or on mint panels.</div>
+        <div>A single shadow is used for floating menus only: <code>0 16px 38px rgba(20,36,61,.16)</code></div>
+        <div>Sticky header: <code>#F3EFEAF2</code> + <code>blur(10px)</code></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="components" style="display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;align-items:baseline;gap:14px"><span style="font-size:13px;font-weight:700;letter-spacing:.11em;color:#00788C">04</span><h2 style="margin:0;font-size:clamp(25px,3vw,36px);letter-spacing:-.02em;font-weight:700">Components</h2></div>
+
+    <div style="background:#FFFDFA;border-radius:28px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:18px">
+      <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Buttons &amp; links</span>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:#F3EFEA;border-radius:20px;padding:22px">
+        <a href="#" style="background:#F48D99;color:#14243D;border-radius:999px;padding:17px 30px;font-size:16px;font-weight:700;min-height:44px;display:flex;align-items:center" style-hover="background:#EF7382">Maak een afspraak</a>
+        <a href="#" style="background:#FFFDFA;color:#1B3E70;border-radius:999px;padding:17px 26px;font-size:16px;font-weight:600;min-height:44px;display:flex;align-items:center" style-hover="background:#F9DDD8">Wat kan je verwachten</a>
+        <a href="#" style="background:#1B3E70;color:#FFFDFA;border-radius:999px;padding:19px 36px;font-size:17px;font-weight:600;min-height:44px;display:flex;align-items:center" style-hover="background:#14243D">Maak een afspraak</a>
+        <a href="#" style="display:inline-flex;align-items:center;gap:10px;background:#FDF3EA;border-radius:999px;padding:16px 28px;font-size:16px;font-weight:600;color:#1B3E70;min-height:44px" style-hover="background:#F9DDD8">Lees meer over mij <span style="color:#F48D99">→</span></a>
+        <a href="#" style="font-size:16px;color:#1B3E70;text-decoration:underline;text-underline-offset:3px;padding:12px 0">Maak een afspraak↗</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px 20px;font-size:14px;line-height:1.5;color:#5B6C85">
+        <div><strong style="color:#14243D">Primary</strong>: coral, ink text, weight 700. Use one per view for booking.</div>
+        <div><strong style="color:#14243D">Secondary</strong>: cream with navy text. On-page navigation.</div>
+        <div><strong style="color:#14243D">Dark</strong>: navy. Only on the closing CTA panel.</div>
+        <div><strong style="color:#14243D">Soft</strong>: peach with a coral arrow. "Read more".</div>
+        <div><strong style="color:#14243D">Text link</strong>: underlined, ↗ for external booking sites.</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px">
+      <div style="background:#FFFDFA;border-radius:28px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:16px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Chips · conditions</span>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;background:#F3EFEA;border-radius:20px;padding:20px">
+          <a href="#" style="background:#FFFDFA;border-radius:999px;padding:18px 26px;font-size:17px;font-weight:600;color:#14243D;display:flex;align-items:center" style-hover="background:#F48D99">Amblyopie</a>
+          <a href="#" style="background:#FFFDFA;border-radius:999px;padding:0 16px;height:44px;font-size:15px;font-weight:600;color:#14243D;display:flex;align-items:center" style-hover="background:#F48D99">Scheelzien · compact</a>
+        </div>
+        <div style="font-size:14px;line-height:1.5;color:#5B6C85">Desktop 17px with 18/26 padding. Tablet and mobile are 44px tall, 15px text, 16px padding and 8px gaps. Hover turns coral.</div>
+      </div>
+      <div style="background:#FFFDFA;border-radius:28px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:16px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Tags · nav · language</span>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:#F3EFEA;border-radius:20px;padding:20px">
+          <span style="border:1px solid #1B3E70;color:#1B3E70;border-radius:999px;padding:7px 15px;font-size:13px;font-weight:500;letter-spacing:.03em">Dr. Irina Balikova · kinderoogarts</span>
+          <span style="font-size:15px;font-weight:600;color:#14243D;padding:11px 18px;border-radius:999px;background:#F9DDD8">Home</span>
+          <span style="font-size:15px;font-weight:500;color:#1B3E70;padding:11px 18px;border-radius:999px">Afspraak</span>
+          <span style="display:inline-flex;border:1px solid rgba(27,62,112,.18);border-radius:999px;padding:2px">
+            <span style="background:#00788C;color:#FFFFFF;font-weight:600;border-radius:999px;font-size:13px;min-width:42px;min-height:42px;display:flex;align-items:center;justify-content:center">NL</span>
+            <span style="color:#1B3E70;font-weight:500;border-radius:999px;font-size:13px;min-width:42px;min-height:42px;display:flex;align-items:center;justify-content:center">EN</span>
+          </span>
+        </div>
+        <div style="font-size:14px;line-height:1.5;color:#5B6C85">Outline tag for intro context. The active nav item is a blush pill. On mobile the NL/EN toggle is a hairline segmented control.</div>
+      </div>
+    </div>
+
+    <div style="background:#BFE3E0;border-radius:16px;padding:clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:36px 24px">
+      <div style="position:relative;padding-left:12px;padding-top:12px">
+        <span style="position:absolute;left:0;top:-10px;z-index:3;display:flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;background:#E4F1F0;color:#14243D;font-size:24px;font-weight:700">1</span>
+        <div style="background:#FFFDFA;border-radius:26px;padding:26px 20px">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;padding-left:8px">
+            <img src="./eye-drops-1st-consultation-icon-mua9h258-zozf.png" alt="" style="width:44px">
+            <h3 style="margin:0;font-size:clamp(20px,1.7vw,26px);font-weight:700">Oogdruppels</h3>
+          </div>
+          <p style="margin:0;font-size:16px;line-height:1.65;color:#5B6C85">Step card: number badge, icon, heading and short text.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
+        <img src="./character-juggling-mua9atlp-ni4j.png" alt="" style="width:110px">
+        <div style="width:100%;background:rgba(255,253,250,.42);border-radius:26px;padding:22px 20px;font-size:16px;line-height:1.6;color:#41536D">Tip block: character + text. On tablet it fills the empty grid cell; on mobile it floats right and the text wraps around it.</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px">
+      <a href="#" style="background:#FFFDFA;border-radius:28px;overflow:hidden;display:flex;flex-direction:column" style-hover="background:#F9DDD8">
+        <img src="assets/clinic-leuven-sm.jpg" alt="Oogartsenpraktijk Leuven" style="width:100%;height:180px;object-fit:cover">
+        <div style="padding:26px">
+          <span style="display:block;font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70;margin-bottom:8px">Leuven</span>
+          <h3 style="margin:0 0 10px;font-size:21px;font-weight:600;color:#14243D">Oogartsenpraktijk</h3>
+          <p style="margin:0 0 6px;font-size:16px;line-height:1.55;color:#5B6C85">Diestsesteenweg 104D<br>3010 Kessel-Lo</p>
+          <p style="margin:0;font-size:16px;font-weight:600;color:#1B3E70">✆ 016 46 56 08</p>
+          <p style="margin:0;font-size:16px;color:#1B3E70;padding:9px 0"><u>Maak een afspraak↗</u></p>
+        </div>
+      </a>
+      <a href="#" style="background:#FFFDFA;border-radius:28px;padding:18px;display:flex;flex-direction:column;gap:16px" style-hover="background:#F9DDD8">
+        <img src="assets/blog-myopie-sm.jpg" alt="" style="width:100%;height:190px;object-fit:cover;border-radius:20px">
+        <h3 style="margin:0 6px;font-size:21px;font-weight:600;line-height:1.28;color:#14243D">Zorgpad Myopie</h3>
+        <p style="margin:0 6px 8px;font-size:16px;line-height:1.6;color:#5B6C85">Article card: inset image (radius 20) inside a 28 card, title and a two-line summary.</p>
+      </a>
+      <div style="background:#FFFDFA;border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:1.55;color:#5B6C85">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Card rules</span>
+        <div>The whole card is the link; hover turns it blush <code>#F9DDD8</code>.</div>
+        <div><strong style="color:#14243D">Location</strong>: image 180 → 120 (tablet-768) → 110 (mobile).</div>
+        <div><strong style="color:#14243D">Article</strong>: image 190 → 120 (tablet-768) → 150 in a swipe row (mobile, 78% card width). Ends with "Lees het artikel →".</div>
+        <div>3 per row from 761px up; stacked on mobile (locations).</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px">
+      <div style="background:#FFFDFA;border-radius:28px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:16px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Section heading + character</span>
+        <div style="position:relative;background:#F3EFEA;border-radius:20px;padding:22px">
+          <img src="./character-bird-muaa11y9-iqit.png" alt="" style="position:absolute;top:8px;right:12px;width:80px">
+          <h3 style="margin:0 0 10px;padding-right:90px;font-size:clamp(25px,7.2vw,30px);line-height:1.16;font-weight:700;letter-spacing:-.02em">Waarvoor kunt u bij ons terecht</h3>
+          <p style="margin:0;padding-right:90px;font-size:16px;line-height:1.6;color:#41536D">Intro line clears the character.</p>
+        </div>
+        <div style="font-size:14px;line-height:1.5;color:#5B6C85">On desktop the character sits at the end of the heading row. On mobile it's 80px and on tablet-768 100px, top-right of the heading, with <code>84px</code>/<code>110px</code> padding on the heading and intro so text doesn't overlap.</div>
+      </div>
+      <div style="background:#FFFDFA;border-radius:28px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:16px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Footer · city links</span>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;background:#F3EFEA;border-radius:20px;padding:20px">
+          <a href="#" style="display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;border:1px solid rgba(27,62,112,.18);color:#1B3E70;font-size:13px;font-weight:700;letter-spacing:.08em">LEUVEN</a>
+          <a href="#" style="display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;border:1px solid rgba(27,62,112,.18);color:#1B3E70;font-size:13px;font-weight:700;letter-spacing:.08em">BRUSSEL</a>
+          <a href="#" style="display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;border:1px solid rgba(27,62,112,.18);color:#1B3E70;font-size:13px;font-weight:700;letter-spacing:.08em">AARSCHOT</a>
+        </div>
+        <div style="font-size:14px;line-height:1.5;color:#5B6C85">On mobile and tablet the footer shows only the logo and these outlined buttons. Desktop shows full clinic details. The links point to the clinic anchors on Aandoeningen.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="patterns" style="display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;align-items:baseline;gap:14px"><span style="font-size:13px;font-weight:700;letter-spacing:.11em;color:#00788C">05</span><h2 style="margin:0;font-size:clamp(25px,3vw,36px);letter-spacing:-.02em;font-weight:700">Page patterns</h2></div>
+    <p style="margin:0;font-size:16px;line-height:1.6;color:#5B6C85;max-width:44em">Building blocks from Klinieken, Over mij, Zorg voor kinderogen and the article template. Every inner page shares the homepage's header, footer and closing CTA.</p>
+
+    <div style="background:#FFFDFA;border-radius:28px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:16px">
+      <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Page header</span>
+      <div style="background:#F3EFEA;border-radius:20px;padding:22px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 28px">
+        <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:14px">
+          <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Afspraak maken</span>
+          <div style="font-size:clamp(30px,4.2vw,56px);line-height:1.12;letter-spacing:-.025em;font-weight:700;color:#14243D">Klinieken</div>
+          <p style="margin:0;font-size:18px;line-height:1.65;color:#41536D;max-width:36em">Eyebrow, H1, a lead in the u-form, and optional anchor chips.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <a href="#" style="background:#FFFDFA;border-radius:999px;padding:0 20px;height:48px;font-size:16px;font-weight:600;color:#14243D;display:inline-flex;align-items:center" style-hover="background:#F48D99">Leuven</a>
+            <a href="#" style="background:#FFFDFA;border-radius:999px;padding:0 20px;height:48px;font-size:16px;font-weight:600;color:#14243D;display:inline-flex;align-items:center" style-hover="background:#F48D99">Brussel</a>
+            <a href="#" style="background:#FFFDFA;border-radius:999px;padding:0 20px;height:48px;font-size:16px;font-weight:600;color:#14243D;display:inline-flex;align-items:center" style-hover="background:#F48D99">Aarschot</a>
+          </div>
+        </div>
+        <img src="./character-locations-muayh6ue-f1yr.png" alt="" style="width:clamp(96px,11vw,150px);height:auto">
+      </div>
+      <div style="font-size:14px;line-height:1.5;color:#5B6C85">H1 <code>clamp(30px,4.2vw,56px)</code>; the profile H1 is smaller, <code>clamp(28px,3.4vw,44px)</code>. One character per header, bottom-right. On mobile it's 80px, top-right, with 84px padding on the text.</div>
+    </div>
+
+    <div style="background:#FFFDFA;border-radius:28px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:16px">
+      <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Clinic card · Klinieken</span>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));background:#F3EFEA;border-radius:20px;overflow:hidden">
+        <img src="assets/clinic-brussel-sm.jpg" alt="Brussels Eye Doctors" style="width:100%;height:100%;min-height:240px;object-fit:cover">
+        <div style="background:#FFFDFA;padding:clamp(20px,3vw,36px);display:flex;flex-direction:column;justify-content:center;gap:14px">
+          <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Brussel</span>
+          <div style="font-size:clamp(24px,2.4vw,32px);line-height:1.12;letter-spacing:-.02em;font-weight:700;color:#14243D">Brussels Eye Doctors</div>
+          <a href="#" style="align-self:flex-start;font-size:16px;color:#00788C;text-decoration:underline;text-underline-offset:3px">brusselseyedoctors.be↗</a>
+          <div>
+            <div style="display:grid;grid-template-columns:100px minmax(0,1fr);gap:14px;padding:12px 0;border-top:1px solid #F1EAE1"><span style="font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#5B6C85">Adres</span><span style="font-size:16px;line-height:1.55">Sint-Michielslaan 12-16<br>1150 Sint-Pieters-Woluwe</span></div>
+            <div style="display:grid;grid-template-columns:100px minmax(0,1fr);gap:14px;padding:12px 0;border-top:1px solid #F1EAE1"><span style="font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#5B6C85">Telefoon</span><span style="font-size:16px;font-weight:600">✆ 02 741 69 99</span></div>
+          </div>
+          <a href="#" style="align-self:flex-start;background:#F48D99;color:#14243D;border-radius:999px;padding:17px 30px;font-size:16px;font-weight:700;display:inline-flex;align-items:center;gap:6px" style-hover="background:#EF7382">Maak een afspraak <span style="font-weight:400">↗</span></a>
+        </div>
+      </div>
+      <div style="font-size:14px;line-height:1.5;color:#5B6C85">Photo and text in two equal columns; the photo alternates sides per clinic on desktop and stacks at 210px on mobile. The address links to Maps and the phone number uses <code>tel:</code>. <strong style="color:#14243D">↗ = leaves the site</strong>: on the primary button it means booking happens on the clinic's own website, so keep it.</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px">
+      <div style="background:#FFFDFA;border-radius:28px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:16px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Info banner</span>
+        <div style="background:#BFE3E0;border-radius:16px;padding:22px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px">
+          <img src="./character-juggling-mua9atlp-ni4j.png" alt="" style="width:84px">
+          <div style="flex:1 1 200px;display:flex;flex-direction:column;gap:10px;align-items:flex-start">
+            <span style="background:#F48D99;color:#14243D;border-radius:999px;padding:8px 16px;font-size:15px;font-weight:700">Reken op 1 tot 1,5 uur</span>
+            <span style="font-size:16px;line-height:1.55;color:#14243D">One practical fact, highlighted with a coral pill.</span>
+          </div>
+        </div>
+        <div style="font-size:14px;line-height:1.5;color:#5B6C85">Mint panel with a character, a coral fact pill and an optional secondary button. One per page.</div>
+      </div>
+      <div style="background:#FFFDFA;border-radius:28px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:16px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Booking bar · Afspraak</span>
+        <div style="background:#F3EFEA;border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:14px">
+          <div><div style="font-size:22px;font-weight:700">Maak een afspraak</div><div style="font-size:15px;color:#5B6C85">Kies uw kliniek en boek rechtstreeks online.</div></div>
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+            <a href="#" style="display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:999px;border:1px solid rgba(27,62,112,.22);color:#1B3E70;font-size:13px;font-weight:700;letter-spacing:.08em" style-hover="background:#F9DDD8">LEUVEN↗</a>
+            <a href="#" style="display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:999px;border:1px solid rgba(27,62,112,.22);color:#1B3E70;font-size:13px;font-weight:700;letter-spacing:.08em" style-hover="background:#F9DDD8">BRUSSEL↗</a>
+            <a href="#" style="display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:999px;border:1px solid rgba(27,62,112,.22);color:#1B3E70;font-size:13px;font-weight:700;letter-spacing:.08em" style-hover="background:#F9DDD8">AARSCHOT↗</a>
+          </div>
+        </div>
+        <div style="font-size:14px;line-height:1.5;color:#5B6C85">A cream bar with outlined city buttons that link straight to each clinic's booking site. The buttons stack in one column on mobile.</div>
+      </div>
+    </div>
+
+    <div style="background:#FFFDFA;border-radius:28px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:16px">
+      <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Profile · Over mij</span>
+      <div style="background:#F3EFEA;border-radius:20px;padding:22px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.6fr);gap:clamp(18px,3vw,40px);align-items:center">
+        <img src="assets/dr-irina-sm.jpg" alt="Dr. Irina Balikova" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:22px">
+        <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+          <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Over mij</span>
+          <div style="font-size:clamp(24px,3.4vw,44px);line-height:1.12;letter-spacing:-.025em;font-weight:700">Dr. Irina Balikova</div>
+          <div style="font-size:clamp(16px,1.6vw,22px);line-height:1.45;color:#1B3E70;font-weight:500">Subtitle in navy, weight 500.</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px;background:#F3EFEA;border-radius:20px;padding:22px">
+        <div style="background:#FFFDFA;border-radius:28px;padding:22px 24px;display:flex;flex-direction:column;gap:6px"><span style="font-size:clamp(22px,2vw,26px);line-height:1.2;font-weight:600;letter-spacing:-.01em">10+ jaar</span><span style="font-size:17px;line-height:1.5;color:#41536D">ervaring in kinderoogheelkunde</span></div>
+        <div style="background:#FFFDFA;border-radius:28px;padding:22px 24px;display:flex;flex-direction:column;gap:6px"><span style="font-size:clamp(22px,2vw,26px);line-height:1.2;font-weight:600;letter-spacing:-.01em">Doctoraat</span><span style="font-size:17px;line-height:1.5;color:#41536D">behaald aan KU Leuven</span></div>
+      </div>
+      <div style="font-size:14px;line-height:1.5;color:#5B6C85">Photo and text split 1 : 2.6, with the photo square at radius 22–28. Fact cards are deliberately low-contrast: 600 at 22–26px over 17px body, not big bold numbers.</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px">
+      <div style="background:#FFFDFA;border-radius:28px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:16px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Timeline rows</span>
+        <div style="background:#BFE3E0;border-radius:16px;padding:8px 22px">
+          <div style="display:grid;grid-template-columns:minmax(0,130px) minmax(0,1fr);gap:16px;padding:16px 0"><span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70;padding-top:3px">Doctoraat</span><span style="font-size:16px;line-height:1.55">KU Leuven</span></div>
+          <div style="display:grid;grid-template-columns:minmax(0,130px) minmax(0,1fr);gap:16px;padding:16px 0;border-top:1px solid rgba(27,62,112,.14)"><span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70;padding-top:3px">Specialisatie</span><div style="display:flex;flex-wrap:wrap;gap:6px"><span style="background:rgba(255,253,250,.5);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:500;color:#41536D">Kinderoogheelkunde</span><span style="background:rgba(255,253,250,.5);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:500;color:#41536D">Oftalmogenetica</span></div></div>
+        </div>
+        <div style="font-size:14px;line-height:1.5;color:#5B6C85">Label and value rows on mint, divided by navy hairlines; they stack on mobile. Tags are quiet, semi-transparent cream and not clickable.</div>
+      </div>
+      <div style="background:#FFFDFA;border-radius:28px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:16px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Quote · Mijn aanpak</span>
+        <div style="background:#F3EFEA;border-radius:20px;padding:22px;display:flex;align-items:center;gap:18px">
+          <img src="./character-star-with-hat-mus5ugdf-hr0s.png" alt="" style="width:80px;flex:0 0 auto">
+          <span style="font-size:clamp(19px,2vw,24px);line-height:1.35;font-weight:600;color:#14243D">Ik benader elk kind op een rustige en respectvolle manier.</span>
+        </div>
+        <div style="font-size:14px;line-height:1.5;color:#5B6C85">One personal statement per page: 600 weight at <code>clamp(22px,2.4vw,32px)</code>, with no quote marks and no card behind it.</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px">
+      <div style="background:#FFFDFA;border-radius:28px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:16px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Article card · reading time</span>
+        <a href="#" style="background:#F3EFEA;border-radius:28px;padding:16px;display:flex;flex-direction:column;gap:12px" style-hover="background:#F9DDD8">
+          <img src="assets/blog-amblyopie-sm.jpg" alt="" style="width:100%;height:150px;object-fit:cover;border-radius:20px">
+          <span style="display:inline-flex;align-items:center;gap:6px;font-size:14px;color:#5B6C85;padding:0 6px"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true" style="flex:0 0 auto"><circle cx="8" cy="8" r="6.3"></circle><path d="M8 4.6V8l2.3 1.5"></path></svg>3 min lezen</span>
+          <span style="font-size:21px;font-weight:600;line-height:1.28;color:#14243D;padding:0 6px">Zorgpad Amblyopie</span>
+          <span style="font-size:15px;font-weight:500;color:#1B3E70;padding:0 6px 4px">Lees het artikel <span style="color:#F48D99">→</span></span>
+        </a>
+        <div style="font-size:14px;line-height:1.5;color:#5B6C85">No category tags. Reading time uses a 14px line clock. "Lees het artikel →" in navy with a coral arrow, also on the homepage cards. The first article on Afspraak is a wide featured card (7 : 5 image to text).</div>
+      </div>
+      <div style="background:#FFFDFA;border-radius:28px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:16px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Article body</span>
+        <div style="background:#F3EFEA;border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:12px">
+          <a href="#" style="font-size:15px;font-weight:600;color:#1B3E70"><span style="color:#F48D99">←</span> Zorg voor kinderogen</a>
+          <span style="font-size:clamp(20px,2vw,28px);line-height:1.2;font-weight:700">Signalen</span>
+          <div style="display:flex;gap:12px;align-items:baseline;font-size:16px;line-height:1.6;color:#41536D"><span style="flex:0 0 8px;height:8px;border-radius:50%;background:#F48D99;transform:translateY(-2px)"></span>Knijpen met de ogen</div>
+          <div style="display:flex;gap:12px;align-items:baseline;font-size:15px;line-height:1.6;color:#5B6C85;padding-left:22px"><span style="flex:0 0 6px;height:6px;border-radius:50%;border:1.5px solid #1B3E70;transform:translateY(-2px)"></span>Sub-item</div>
+          <div style="background:#F9DDD8;border-radius:22px;padding:18px;display:flex;gap:14px;align-items:flex-start">
+            <img src="./character-attention-triangle-mus60s9m-ij4d.png" alt="" style="width:56px;flex:0 0 auto">
+            <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Alarmsignalen</span><span style="font-size:16px;font-weight:600;line-height:1.45">Plots scheelzien: dringend raadplegen.</span></div>
+          </div>
+        </div>
+        <div style="font-size:14px;line-height:1.5;color:#5B6C85">Text column 720px wide, body 17px at line height 1.7, H2 22–28px. Bullets are coral dots, with hollow navy dots for sub-items. Red flags sit in a blush block with the attention character, one per article. Use <code>Artikel.dc.html?a=key</code>.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="characters" style="display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;align-items:baseline;gap:14px"><span style="font-size:13px;font-weight:700;letter-spacing:.11em;color:#00788C">06</span><h2 style="margin:0;font-size:clamp(25px,3vw,36px);letter-spacing:-.02em;font-weight:700">Characters &amp; icons</h2></div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;background:#FFFDFA;border-radius:28px;padding:24px">
+      <img src="./character-bird-muaa11y9-iqit.png" alt="" style="height:96px">
+      <img src="./character-locations-muayh6ue-f1yr.png" alt="" style="height:96px">
+      <img src="./character-juggling-mua9atlp-ni4j.png" alt="" style="height:96px">
+      <img src="./element-hand-thumb-up-like-with-stars-muabhfco-pqow.png" alt="" style="height:96px">
+      <img src="./character-bird-muaywzl9-7md9.png" alt="" style="height:96px">
+      <img src="./character-flower-with-glasses-mus2mnon-u6yk.png" alt="" style="height:96px">
+      <img src="./character-star-with-hat-mus5ugdf-hr0s.png" alt="" style="height:96px">
+      <img src="./character-attention-triangle-mus60s9m-ij4d.png" alt="" style="height:96px">
+      <img src="assets/characters/character-question-mark-glasses.png" alt="" style="height:96px">
+      <span style="width:1px;align-self:stretch;background:#E2DBD1"></span>
+      <img src="./eye-drops-1st-consultation-icon-mua9h258-zozf.png" alt="" style="height:44px">
+      <img src="./examination-1st-consultation-icon-mua9h7st-mho5.png" alt="" style="height:44px">
+      <img src="./cap-1st-consultation-icon-mua9hf68-rqve.png" alt="" style="height:44px">
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px 24px;font-size:15px;line-height:1.55;color:#41536D">
+      <div><strong style="color:#14243D">One per section</strong>, tied to the heading or the tip, never as filler in empty space.</div>
+      <div><strong style="color:#14243D">Sizes</strong>: 80px on mobile, 100–110px on tablet, larger on desktop. Decorative, so <code>alt=""</code>.</div>
+      <div><strong style="color:#14243D">Icons</strong>: the brand's 44px line icons inside step cards. No emoji; Unicode only for ✆ → ↗ ▼.</div>
+      <div><strong style="color:#14243D">Don't</strong> redraw, recolour or replace the approved characters.</div>
+      <div style="grid-column:1 / -1;background:#FFFDFA;border-radius:28px;padding:22px 24px;font-size:14px;line-height:1.5;color:#5B6C85;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0 28px">
+        <span style="grid-column:1 / -1;font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70;padding-bottom:8px">Where each character appears</span>
+        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #F1EAE1"><img src="./character-bird-muaa11y9-iqit.png" alt="" style="width:56px;height:56px;object-fit:contain;flex:0 0 auto"><div style="min-width:0"><strong style="color:#14243D">Bird</strong><br>Home · Waarvoor kunt u bij ons terecht</div></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #F1EAE1"><img src="./character-bird-muaywzl9-7md9.png" alt="" style="width:56px;height:56px;object-fit:contain;flex:0 0 auto"><div style="min-width:0"><strong style="color:#14243D">Bird (second pose)</strong><br>Home · Zorg voor kinderogen</div></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #F1EAE1"><img src="./character-juggling-mua9atlp-ni4j.png" alt="" style="width:56px;height:56px;object-fit:contain;flex:0 0 auto"><div style="min-width:0"><strong style="color:#14243D">Juggler</strong><br>Home · De eerste raadpleging (tip) · Klinieken · time banner</div></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #F1EAE1"><img src="./character-locations-muayh6ue-f1yr.png" alt="" style="width:56px;height:56px;object-fit:contain;flex:0 0 auto"><div style="min-width:0"><strong style="color:#14243D">Locations</strong><br>Home · Drie locaties · Klinieken · page header</div></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #F1EAE1"><img src="./character-flower-with-glasses-mus2mnon-u6yk.png" alt="" style="width:56px;height:56px;object-fit:contain;flex:0 0 auto"><div style="min-width:0"><strong style="color:#14243D">Flower with glasses</strong><br>Afspraak · page header (Zorg voor kinderogen)</div></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #F1EAE1"><img src="./character-star-with-hat-mus5ugdf-hr0s.png" alt="" style="width:56px;height:56px;object-fit:contain;flex:0 0 auto"><div style="min-width:0"><strong style="color:#14243D">Star with hat</strong><br>Over mij · Mijn aanpak</div></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #F1EAE1"><img src="./character-attention-triangle-mus60s9m-ij4d.png" alt="" style="width:56px;height:56px;object-fit:contain;flex:0 0 auto"><div style="min-width:0"><strong style="color:#14243D">Attention triangle</strong><br>Artikel · red-flag block</div></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #F1EAE1"><img src="assets/characters/character-question-mark-glasses.png" alt="" style="width:56px;height:56px;object-fit:contain;flex:0 0 auto"><div style="min-width:0"><strong style="color:#14243D">Question mark with glasses</strong><br>FAQ · page header</div></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #F1EAE1"><img src="./element-hand-thumb-up-like-with-stars-muabhfco-pqow.png" alt="" style="width:56px;height:56px;object-fit:contain;flex:0 0 auto"><div style="min-width:0"><strong style="color:#14243D">Thumb up</strong><br>Home, Over mij, Artikel · closing CTA</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="responsive" style="display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;align-items:baseline;gap:14px"><span style="font-size:13px;font-weight:700;letter-spacing:.11em;color:#00788C">07</span><h2 style="margin:0;font-size:clamp(25px,3vw,36px);letter-spacing:-.02em;font-weight:700">Responsive behaviour</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+      <div style="background:#FFFDFA;border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:12px;font-size:15px;line-height:1.55;color:#41536D">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Mobile ≤760</span>
+        <div><strong style="color:#14243D">Header</strong>: burger left, logo 112px in the centre, NL/EN right. After the hero it shrinks to burger + 86px logo. Uses a <code>1fr auto 1fr</code> grid.</div>
+        <div><strong style="color:#14243D">Hero</strong>: stacked. Photo 300px on top, text on the page colour below, with a hairline fade divider under it.</div>
+        <div><strong style="color:#14243D">Headings</strong>: every H2 is the hero size, <code>clamp(25px,7.2vw,34px)</code>.</div>
+        <div><strong style="color:#14243D">Grids</strong>: one column. Steps 36px apart, the tip character floats right.</div>
+        <div><strong style="color:#14243D">Articles</strong>: swipe row with snap scrolling.</div>
+      </div>
+      <div style="background:#FFFDFA;border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:12px;font-size:15px;line-height:1.55;color:#41536D">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Tablet 761–1100</span>
+        <div><strong style="color:#14243D">Hero</strong>: text over the photo. Height <code>max(490px,53vw)</code>, image shifted right, intro max <code>19em</code>.</div>
+        <div><strong style="color:#14243D">Steps</strong>: 2×2 grid, with the tip in the fourth cell.</div>
+        <div><strong style="color:#14243D">Chips and footer</strong>: compact, same as mobile.</div>
+        <div><strong style="color:#14243D">761–820 only</strong>: characters top-right of the heading, Over mij 250px photo + text, and 3-up compact location/article cards.</div>
+      </div>
+      <div style="background:#FFFDFA;border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:12px;font-size:15px;line-height:1.55;color:#41536D">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#1B3E70">Desktop &gt;1100</span>
+        <div><strong style="color:#14243D">Header</strong>: centred logo, with nav pills and the language dropdown below it.</div>
+        <div><strong style="color:#14243D">Grids</strong>: <code>auto-fit, minmax(268–276px,1fr)</code>, so cards land 3 per row.</div>
+        <div><strong style="color:#14243D">Over mij</strong>: 340px photo + text in two columns.</div>
+        <div><strong style="color:#14243D">Footer</strong>: full clinic details per city.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="a11y" style="display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;align-items:baseline;gap:14px"><span style="font-size:13px;font-weight:700;letter-spacing:.11em;color:#00788C">08</span><h2 style="margin:0;font-size:clamp(25px,3vw,36px);letter-spacing:-.02em;font-weight:700">Accessibility &amp; voice</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+      <div style="background:#FFFDFA;border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55;color:#41536D">
+        <div>Tap targets are <strong style="color:#14243D">44px</strong> minimum (42px for the NL/EN segments).</div>
+        <div>Text is 13px minimum, and 15–16px for anything longer than a label.</div>
+        <div>Text contrast is at least 4.5:1. On light backgrounds use navy, ink or <code>#00788C</code>, never plain teal or coral as text.</div>
+        <div>Use a real heading order (H1 → H2 → H3), and give content images an alt text.</div>
+      </div>
+      <div style="background:#FFFDFA;border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55;color:#41536D">
+        <div><strong style="color:#14243D">Language</strong>: Dutch first, English second (FR/DE later). Use sentence case; uppercase only for eyebrows.</div>
+        <div><strong style="color:#14243D">Voice</strong>: the doctor speaks in the first person ("Ik ontvang…"). Parents are addressed as <strong style="color:#14243D">u / uw</strong>, children as <strong style="color:#14243D">je / jouw</strong>. Warm and plain.</div>
+        <div><strong style="color:#14243D">CTA wording</strong>: always "Maak een afspraak". Keep paragraphs short, with no walls of text.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+</body>
+</html>

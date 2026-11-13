@@ -1,0 +1,40 @@
+Le pseudo-strabisme (faux strabisme) chez l’enfant
+
+Il peut être inquiétant pour les parents de voir leur bébé ou jeune enfant sembler loucher. Dans de nombreux cas, il s’agit pourtant d’un pseudo-strabisme : un strabisme apparent, alors que les yeux sont en réalité bien alignés.
+
+Qu’est-ce que le pseudo-strabisme ?
+En cas de pseudo-strabisme, les yeux semblent mal alignés, alors qu’ils le sont anatomiquement et fonctionnellement. Il s’agit donc d’une illusion d’optique et non d’une véritable anomalie oculaire.
+
+Quelles sont les causes du pseudo-strabisme ?
+Le pseudo-strabisme est généralement dû à des traits du visage typiques des jeunes enfants, comme :
+- une racine du nez large ou plate
+- des replis épicanthiques (plis de peau supplémentaires au coin interne des paupières)
+- la proportion entre le blanc de l’œil et l’iris chez le bébé
+
+Ces caractéristiques peuvent donner l’impression qu’un œil dévie vers l’intérieur ou l’extérieur, alors que les deux yeux fonctionnent correctement ensemble.
+
+Le pseudo-strabisme est-il dangereux ?
+Non. Le pseudo-strabisme n’a aucune influence sur la vision et n’entraîne pas d’œil paresseux (amblyopie). Aucun traitement n’est nécessaire.
+
+Le pseudo-strabisme disparaît-il tout seul ?
+Oui, dans la plupart des cas. À mesure que le visage de l’enfant grandit et que la racine du nez s’affine, le strabisme apparent disparaît généralement spontanément, souvent vers l’âge de 2 à 3 ans.
+
+Quelle est la différence avec un vrai strabisme ?
+En cas de vrai strabisme, les yeux sont réellement mal alignés. Cela peut affecter la vision et nécessite parfois un traitement. C’est pourquoi il est important qu’un ophtalmologue fasse la distinction entre un pseudo-strabisme et un vrai strabisme.
+Pendant l’examen, l’ophtalmologue observe notamment les reflets lumineux dans les deux yeux et évalue la position des yeux et le développement visuel.
+
+Quand un examen des yeux est-il conseillé ?
+Un contrôle chez l’ophtalmologue est recommandé :
+- en cas de doute sur la position des yeux
+- si le strabisme augmente
+- en cas d’antécédents familiaux de strabisme
+- lorsqu’un enfant semble privilégier un œil
+- en cas d’autres questions sur la vision ou le développement
+
+En résumé
+- Pseudo-strabisme = strabisme apparent
+- Les yeux sont correctement alignés
+- Bénin et généralement temporaire
+- Un examen des yeux est important pour exclure de vraies anomalies
+
+Vous avez des questions ou des doutes sur la position des yeux de votre enfant ? Un examen ophtalmologique pédiatrique apporte clarté et sérénité.
