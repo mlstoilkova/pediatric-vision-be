@@ -1,0 +1,54 @@
+/*
+  Design tokens. Source of truth: design/Design System.dc.html
+  Breakpoints (not usable in var()): mobile ≤760 · tablet 761–1100 · desktop >1100
+  (tablet-768 specifics: 761–820; side padding drops to 22px at ≤640).
+*/
+:root {
+  /* Colour */
+  --c-page: #f3efea;
+  --c-cream: #fffdfa; /* cards */
+  --c-peach: #fdf3ea; /* soft button */
+  --c-blush: #f9ddd8; /* hover, active nav, red-flag block */
+  --c-coral: #f48d99; /* action */
+  --c-coral-hover: #ef7382;
+  --c-mint: #bfe3e0; /* panels */
+  --c-mint-light: #e0f0f0;
+  --c-badge: #e4f1f0;
+  --c-teal: #00859c; /* brand */
+  --c-teal-text: #00788c; /* teal text on light backgrounds (4.5:1) */
+  --c-ink: #14243d; /* headings */
+  --c-navy: #1b3e70; /* links, labels, dark button */
+  --c-body: #41536d; /* lead and long-form text */
+  --c-muted: #5b6c85; /* card text, meta */
+  --c-hairline: #e2dbd1;
+  --c-hairline-soft: #f1eae1;
+  --c-hairline-navy: rgba(27, 62, 112, 0.18);
+  --c-header: #f3efeaf2;
+
+  /* Typography */
+  --font: 'Poppins', system-ui, sans-serif;
+
+  /* Layout */
+  --max-width: 1280px;
+  --pad-x: 40px;
+  --section-top: clamp(56px, 7vw, 96px);
+  --page-gutter: 6px; /* the design sits inside a 6px frame */
+  --header-offset: 120px; /* anchor scroll offset for the sticky header */
+
+  /* Radius */
+  --r-pill: 999px;
+  --r-cta: 36px;
+  --r-card: 28px;
+  --r-step: 26px;
+  --r-photo: 22px;
+  --r-panel: 16px;
+
+  /* Depth: flat, except floating menus */
+  --shadow-float: 0 16px 38px rgba(20, 36, 61, 0.16);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --pad-x: 22px;
+  }
+}

@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import { locales } from '../i18n/config';
+import { pageKeys, pageSlugParam } from '../i18n/routes';
+import { getUi } from '../i18n/ui';
+
+// One route generates every page in every language from the table in src/i18n/routes.ts.
+// Step 2 renders a placeholder per page; the real pages replace it one by one in step 4.
+export function getStaticPaths() {
+  return locales.flatMap((locale) =>
+    pageKeys.map((page) => ({
+      params: { slug: pageSlugParam(page, locale) },
+      props: { locale, page },
+    })),
+  );
+}
+
+const { locale, page } = Astro.props;
+const title = getUi(locale).titles[page];
+
+// The closing CTA is not shown on the clinics and articles pages
+const showCta = page !== 'clinics' && page !== 'conditions';
+---
+
+<Base
+  locale={locale}
+  page={{ page }}
+  title={title}
+  showCta={showCta}
+  ctaFaqLink={page !== 'faq'}
+  ctaTight={page === 'home'}
+>
+  <div class="placeholder container">
+    <h1 class="t-page-h1">{title}</h1>
+  </div>
+</Base>
+
+<style>
+  .placeholder {
+    min-height: 40vh;
+    padding-top: var(--section-top);
+    padding-bottom: var(--section-top);
+  }
+</style>

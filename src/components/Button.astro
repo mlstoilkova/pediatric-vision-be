@@ -1,0 +1,106 @@
+---
+import { getUi } from '../i18n/ui';
+import type { Locale } from '../i18n/config';
+
+interface Props {
+  href: string;
+  /** primary: coral (booking) · secondary: cream · dark: navy (closing CTA only) · soft: peach "read more" · link: underlined text */
+  variant?: 'primary' | 'secondary' | 'dark' | 'soft' | 'link';
+  /** Opens in a new tab; shows ↗ and tells screen readers. */
+  external?: boolean;
+  locale?: Locale;
+  class?: string;
+}
+
+const { href, variant = 'primary', external = false, locale = 'nl', class: className } = Astro.props;
+const ui = getUi(locale);
+---
+
+<a
+  href={href}
+  class:list={['btn', `btn--${variant}`, className]}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener' : undefined}
+>
+  <slot />
+  {variant === 'soft' && <span class="btn__arrow" aria-hidden="true">→</span>}
+  {external && <span class="btn__external" aria-hidden="true">↗</span>}
+  {external && <span class="sr-only">{ui.newTab}</span>}
+</a>
+
+<style>
+  /* All buttons are at least 44px tall. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    border-radius: var(--r-pill);
+    transition: background-color 0.15s ease;
+  }
+
+  .btn--primary {
+    background: var(--c-coral);
+    color: var(--c-ink);
+    padding: 17px 30px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .btn--primary:hover {
+    background: var(--c-coral-hover);
+    color: var(--c-ink);
+  }
+
+  .btn--secondary {
+    background: var(--c-cream);
+    color: var(--c-navy);
+    padding: 17px 26px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .btn--secondary:hover {
+    background: var(--c-blush);
+    color: var(--c-navy);
+  }
+
+  .btn--dark {
+    background: var(--c-navy);
+    color: var(--c-cream);
+    padding: 19px 36px;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .btn--dark:hover {
+    background: var(--c-ink);
+    color: var(--c-cream);
+  }
+
+  .btn--soft {
+    gap: 10px;
+    background: var(--c-peach);
+    color: var(--c-navy);
+    padding: 16px 28px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .btn--soft:hover {
+    background: var(--c-blush);
+    color: var(--c-navy);
+  }
+  .btn__arrow {
+    color: var(--c-coral);
+  }
+
+  .btn--link {
+    color: var(--c-navy);
+    font-size: 16px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding: 12px 0;
+    border-radius: 0;
+  }
+
+  .btn__external {
+    font-weight: 400;
+  }
+</style>

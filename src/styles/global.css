@@ -1,0 +1,234 @@
+/* Reset + base + type scale. Colours, radii and spacing come from tokens.css. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: var(--header-offset); /* anchors clear the sticky header */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--c-ink);
+  background: var(--c-page);
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--c-navy);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--c-ink);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Keyboard focus: 2px navy outline, 3px offset (WCAG 2.2 AA) */
+:focus-visible {
+  outline: 2px solid var(--c-navy);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -80px;
+  z-index: 100;
+  padding: 12px 20px;
+  border-radius: var(--r-pill);
+  background: var(--c-navy);
+  color: var(--c-cream);
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 12px;
+  color: var(--c-cream);
+}
+
+/* Content column: max 1280px, 40px side padding (22px at ≤640) */
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+}
+
+/* ---------- Type scale (Design System §02) ---------- */
+.t-h1 {
+  font-size: clamp(32px, 4vw, 58px);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: var(--c-ink);
+}
+
+.t-page-h1 {
+  font-size: clamp(30px, 4.2vw, 56px);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: var(--c-ink);
+}
+
+.t-profile-h1 {
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: var(--c-ink);
+}
+
+.t-h2 {
+  font-size: clamp(28px, 3.4vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: var(--c-ink);
+  overflow-wrap: break-word;
+}
+
+.t-h3-step {
+  font-size: clamp(20px, 1.7vw, 26px);
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--c-ink);
+}
+
+.t-h3-card {
+  font-size: 21px;
+  line-height: 1.28;
+  font-weight: 600;
+  color: var(--c-ink);
+}
+
+.t-lead {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--c-body);
+}
+
+.t-body {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--c-muted);
+}
+
+.t-eyebrow {
+  font-size: 13px; /* 13px is the floor for text */
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--c-navy);
+}
+
+/*
+  On mobile every H1/H2 uses the hero size.
+  The prototype never hyphenates (its <html> has no lang), so headings stay unhyphenated here
+  too; a word that is too long still wraps via overflow-wrap.
+*/
+@media (max-width: 760px) {
+  .t-h1,
+  .t-h2 {
+    font-size: clamp(25px, 7.2vw, 34px);
+    line-height: 1.16;
+    hyphens: manual;
+    overflow-wrap: break-word;
+  }
+}
+
+/* ---------- Characters ---------- */
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1.5deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1.5deg);
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.12) rotate(18deg);
+    opacity: 1;
+  }
+}
+
+/* Characters gently bob. Duration is set per use (5.5–8s). */
+.bob {
+  animation: bob var(--bob-duration, 6.5s) ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

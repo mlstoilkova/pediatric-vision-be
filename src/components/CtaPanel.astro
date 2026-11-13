@@ -1,0 +1,109 @@
+---
+import { Image } from 'astro:assets';
+import Button from './Button.astro';
+import thumbUp from '../assets/characters/thumb-up-stars.png';
+import { getUi } from '../i18n/ui';
+import { pagePath } from '../i18n/routes';
+import type { Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+  /** "Of bekijk eerst de veelgestelde vragen" link. Off on the FAQ page itself. */
+  faqLink?: boolean;
+  /** Home sits closer to the section above and has no space below. */
+  tight?: boolean;
+}
+
+const { locale, faqLink = true, tight = false } = Astro.props;
+const ui = getUi(locale);
+---
+
+<!-- Closing call to action. Not shown on the clinics and articles pages. -->
+<section class:list={['cta', 'container', { 'cta--tight': tight }]}>
+  <div class="cta__panel">
+    <Image
+      src={thumbUp}
+      alt=""
+      width={106}
+      densities={[1.5, 2]}
+      class="cta__character bob"
+      loading="lazy"
+    />
+    <h2 class="cta__title">{ui.cta.title}</h2>
+    <p class="cta__text">{ui.cta.text}</p>
+    <Button href={pagePath({ page: 'clinics' }, locale)} variant="dark" locale={locale} class="cta__book">
+      {ui.book}
+    </Button>
+    {faqLink && <a class="cta__faq" href={pagePath({ page: 'faq' }, locale)}>{ui.cta.faq}</a>}
+  </div>
+</section>
+
+<style>
+  /* Spacing measured from the prototype: 96/56px above the panel, clamp(40px,5vw,72px) below it. */
+  .cta {
+    padding-top: var(--section-top);
+    padding-bottom: clamp(40px, 5vw, 72px);
+  }
+
+  .cta--tight {
+    padding-top: 24px;
+    padding-bottom: 0;
+  }
+
+  .cta__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    padding: 36px clamp(24px, 4.6vw, 60px) 60px;
+    border-radius: var(--r-cta);
+    text-align: center;
+  }
+
+  .cta__panel :global(.cta__character) {
+    width: 106px;
+    height: auto;
+    margin: 0 auto 4px;
+    --bob-duration: 5.5s;
+  }
+
+  .cta__title {
+    max-width: 20em;
+    font-size: clamp(28px, 3.4vw, 46px);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    color: var(--c-ink);
+    overflow-wrap: break-word;
+  }
+
+  @media (max-width: 760px) {
+    .cta__title {
+      font-size: clamp(25px, 7.2vw, 34px);
+      line-height: 1.16;
+      hyphens: manual;
+    }
+  }
+
+  .cta__text {
+    max-width: 30em;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--c-navy);
+  }
+
+  .cta__panel :global(.cta__book) {
+    margin-top: 6px;
+  }
+
+  .cta__faq {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 16px;
+    color: var(--c-navy);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

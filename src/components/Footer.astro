@@ -1,0 +1,175 @@
+---
+import logo from '../assets/logo.svg';
+import { getClinics } from '../lib/clinics';
+import { getUi } from '../i18n/ui';
+import { pagePath } from '../i18n/routes';
+import type { Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = getUi(locale);
+const clinics = await getClinics(locale);
+const clinicsPage = pagePath({ page: 'clinics' }, locale);
+---
+
+<footer class="footer">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <a href={pagePath({ page: 'home' }, locale)}>
+        <img src={logo.src} width={logo.width} height={logo.height} alt={ui.site.name} />
+      </a>
+    </div>
+    {
+      clinics.map((clinic) => (
+        <div>
+          <p class="footer__city">
+            <a href={`${clinicsPage}#${clinic.slug}`}>{clinic.city}</a>
+          </p>
+          <p class="footer__name">{clinic.name}</p>
+          <p class="footer__address">
+            {clinic.addressLine1}
+            <br />
+            {clinic.addressLine2}
+            <br />
+            <a href={clinic.phoneHref}>✆ {clinic.phone}</a>
+          </p>
+        </div>
+      ))
+    }
+  </div>
+  <div class="footer__bottom">
+    <a href={pagePath({ page: 'privacy' }, locale)}>{ui.footer.privacy}</a>
+    <a href={pagePath({ page: 'faq' }, locale)}>{ui.footer.faq}</a>
+    <span class="footer__copyright">{ui.footer.copyright}</span>
+  </div>
+</footer>
+
+<style>
+  /* No margin: every page (or the CTA) owns the space above the footer. */
+  .footer {
+    padding: 60px var(--pad-x) 40px;
+    background: var(--c-cream);
+  }
+
+  .footer__grid {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 36px;
+  }
+
+  .footer__brand {
+    max-width: 24em;
+  }
+
+  .footer__brand img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 16px;
+  }
+
+  .footer__city {
+    margin-bottom: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-ink);
+  }
+
+  .footer__city a {
+    color: inherit;
+  }
+
+  /* Larger tap target on desktop without changing the layout */
+  @media (min-width: 1101px) {
+    .footer__city a {
+      display: inline-block;
+      padding: 13px 0;
+      margin: -13px 0;
+    }
+  }
+
+  .footer__name {
+    font-size: 16px;
+    line-height: 1.65;
+    font-weight: 600;
+    color: var(--c-muted);
+  }
+
+  .footer__address {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--c-muted);
+  }
+
+  .footer__address a {
+    color: inherit;
+  }
+
+  .footer__bottom {
+    max-width: var(--max-width);
+    margin: 40px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--c-hairline-soft);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 28px;
+  }
+
+  .footer__bottom a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 15px;
+    color: var(--c-muted);
+  }
+
+  /* The design uses #98A4B6 here (about 2.5:1). #5B6C85 keeps the muted look and passes 4.5:1. */
+  .footer__copyright {
+    margin-left: auto;
+    font-size: 15px;
+    color: var(--c-muted);
+  }
+
+  /* Tablet and mobile: logo + three outlined city buttons, no addresses */
+  @media (max-width: 1100px) {
+    .footer__grid {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px 8px;
+    }
+
+    .footer__brand {
+      grid-column: 1 / -1;
+    }
+
+    .footer__name,
+    .footer__address {
+      display: none;
+    }
+
+    .footer__city {
+      margin: 0;
+    }
+
+    .footer__city a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--c-hairline-navy);
+      color: var(--c-navy);
+      font-size: 13px;
+    }
+
+    .footer__city a:hover {
+      background: var(--c-blush);
+    }
+  }
+</style>

@@ -1,0 +1,85 @@
+---
+import '@fontsource/poppins/latin-400.css';
+import '@fontsource/poppins/latin-500.css';
+import '@fontsource/poppins/latin-600.css';
+import '@fontsource/poppins/latin-700.css';
+import '../styles/tokens.css';
+import '../styles/global.css';
+
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CtaPanel from '../components/CtaPanel.astro';
+import { SITE, FEATURES } from '../config';
+import { defaultLocale, locales, ogLocales, type Locale } from '../i18n/config';
+import { pagePath, type PageRef } from '../i18n/routes';
+import { getUi } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  page: PageRef;
+  /** Page title without the site name. */
+  title: string;
+  description?: string;
+  /** Closing call to action. Not shown on the clinics and articles pages. */
+  showCta?: boolean;
+  /** FAQ link under the CTA button. Off on the FAQ page. Also switched off for the whole site by FEATURES.ctaFaqLink. */
+  ctaFaqLink?: boolean;
+  /** Home's tighter CTA spacing. */
+  ctaTight?: boolean;
+}
+
+const { locale, page, title, description, showCta = true, ctaFaqLink = true, ctaTight = false } = Astro.props;
+const ui = getUi(locale);
+
+const metaDescription = description ?? ui.site.description;
+const fullTitle = page.page === 'home' ? `${ui.site.name} · ${title}` : `${title} · ${ui.site.name}`;
+const absolute = (l: Locale) => new URL(pagePath(page, l), SITE.url).href;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <meta name="theme-color" content="#F3EFEA" />
+    {SITE.noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <link rel="canonical" href={absolute(locale)} />
+    {locales.map((l) => <link rel="alternate" hreflang={l} href={absolute(l)} />)}
+    <link rel="alternate" hreflang="x-default" href={absolute(defaultLocale)} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={ui.site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={absolute(locale)} />
+    <meta property="og:locale" content={ogLocales[locale]} />
+    {locales.filter((l) => l !== locale).map((l) => <meta property="og:locale:alternate" content={ogLocales[l]} />)}
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{ui.skip}</a>
+    <div class="page">
+      <Header locale={locale} page={page} />
+      <main id="main">
+        <slot />
+        {showCta && <CtaPanel locale={locale} faqLink={ctaFaqLink && FEATURES.ctaFaqLink} tight={ctaTight} />}
+      </main>
+      <Footer locale={locale} />
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  /* The design sits inside a 6px frame; overflow-x: clip (not hidden) keeps the sticky header working. */
+  .page {
+    position: relative;
+    width: 100%;
+    padding-inline: var(--page-gutter);
+    overflow-x: clip;
+    background: var(--c-page);
+  }
+</style>
