@@ -1,0 +1,45 @@
+nl:
+  header:
+    eyebrow: Afspraak maken
+    title: Klinieken
+    lead: Dit zijn de klinieken waar ik patiënten ontvang. Als u vragen heeft, kunt u gerust bellen. U kunt een afspraak maken via de link bij elke kliniek.
+  labels:
+    address: Adres
+    phone: Telefoon
+  banner:
+    pill: Reken op 1 tot 1,5 uur
+    text: Bij een eerste consultatie gebruiken we oogdruppels die minstens 30 minuten moeten inwerken. Voorzie dus voldoende tijd.
+    faqPrompt: Meer vragen?
+    faqLabel: Bekijk de veelgestelde vragen
+    faqTopic: oogonderzoek
+    expectLabel: Wat kunt u verwachten
+en:
+  header:
+    eyebrow: Appointments
+    title: Clinics
+    lead: These are the clinics where I see patients. If you have any questions, feel free to call. You can book an appointment via the link for each clinic.
+  labels:
+    address: Address
+    phone: Phone
+  banner:
+    pill: Allow 1 to 1.5 hours
+    text: At a first consultation we use eye drops that need at least 30 minutes to take effect. So please allow enough time.
+    faqPrompt: More questions?
+    faqLabel: See the frequently asked questions
+    faqTopic: oogonderzoek
+    expectLabel: What to expect
+fr:
+  header:
+    eyebrow: Prendre rendez-vous
+    title: Cliniques
+    lead: Voici les cliniques où je reçois les patients. Pour toute question, n’hésitez pas à appeler. Vous pouvez prendre rendez-vous via le lien de chaque clinique.
+  labels:
+    address: Adresse
+    phone: Téléphone
+  banner:
+    pill: Comptez 1 à 1,5 heure
+    text: Lors d’une première consultation, nous utilisons des gouttes qui doivent agir au moins 30 minutes. Prévoyez donc suffisamment de temps.
+    faqPrompt: D’autres questions ?
+    faqLabel: Consultez les questions fréquentes
+    faqTopic: oogonderzoek
+    expectLabel: À quoi vous attendre

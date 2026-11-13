@@ -7,5 +7,7 @@
   "phone": "016 46 56 08",
   "mapsUrl": "https://www.google.com/maps/place/Ophthalmologist+Delaere+-+Gillis+-+Verstraeten/@50.8839903,4.7207643,676m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47c1672dd8edcedd:0x2734968b1eaa695c!8m2!3d50.8839903!4d4.7233446!16s%2Fg%2F12hr56sld",
   "bookingUrl": "https://sanmax.afsprakenbeheer.be/e/aHN0UVJrME14VXVnbXRmNHRzbE9EVDRpT2pFRWFUNU0xZmJLNVAyaVZ2YUx2dGFzTElubWFBPT0%3D",
-  "order": 1
+  "order": 1,
+  "photo": "../../../assets/uploads/clinic-leuven.jpg",
+  "photoAlt": "Oogartsenpraktijk, Louvain"
 }

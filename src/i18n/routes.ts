@@ -21,29 +21,15 @@ const paths: Record<PageKey, Record<Locale, string>> = {
 };
 
 /**
- * Article slugs per language, derived from the doctor-approved titles.
- * The language switcher uses the article id to stay on the same article.
- * (Moves into the article content in step 3.)
+ * A page, or an article (which lives under the `conditions` page). An article carries its URL part per
+ * language, from the article content, so the language switcher can stay on the same article.
  */
-export const articleSlugs = {
-  myopie: { nl: 'zorgtraject-myopie', en: 'myopia-care-pathway', fr: 'parcours-de-soins-myopie' },
-  amblyopie: { nl: 'zorgtraject-amblyopie', en: 'amblyopia-care-pathway', fr: 'parcours-de-soins-amblyopie' },
-  strabisme: { nl: 'zorgtraject-strabisme', en: 'strabismus-care-pathway', fr: 'trajet-de-soins-strabisme' },
-  pseudostrabisme: {
-    nl: 'pseudostrabisme-bij-kinderen',
-    en: 'pseudostrabismus-in-children',
-    fr: 'pseudo-strabisme-chez-lenfant',
-  },
-} as const satisfies Record<string, Record<Locale, string>>;
-export type ArticleId = keyof typeof articleSlugs;
-
-/** A page, or an article (which lives under the `conditions` page). */
-export type PageRef = { page: PageKey; article?: ArticleId };
+export type PageRef = { page: PageKey; articleSlugs?: Record<Locale, string> };
 
 /** Absolute path with a trailing slash, e.g. `/`, `/en/appointment/`, `/fr/affections/trajet-de-soins-strabisme/`. */
 export function pagePath(ref: PageRef, locale: Locale): string {
   let path = paths[ref.page][locale];
-  if (ref.article) path = `${path}/${articleSlugs[ref.article][locale]}`;
+  if (ref.articleSlugs) path = `${path}/${ref.articleSlugs[locale]}`;
   return path ? `/${path}/` : '/';
 }
 

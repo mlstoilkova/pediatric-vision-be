@@ -1,0 +1,24 @@
+nl:
+  backLabel: Zorg voor kinderogen
+  redFlagsLabel: Alarmsignalen
+  alsoRead: Lees ook
+  faqCard:
+    title: Veelgestelde vragen
+    text: Antwoorden op wat ouders het vaakst vragen over het oogonderzoek, brillen, een lui oog en scheelzien.
+    buttonLabel: Bekijk de vragen
+en:
+  backLabel: Caring for children’s eyes
+  redFlagsLabel: Warning signs
+  alsoRead: Further reading
+  faqCard:
+    title: Frequently asked questions
+    text: Answers to what parents ask most about eye examinations, glasses, lazy eye and squint.
+    buttonLabel: See the questions
+fr:
+  backLabel: Prendre soin des yeux des enfants
+  redFlagsLabel: Signaux d’alarme
+  alsoRead: À lire aussi
+  faqCard:
+    title: Questions fréquentes
+    text: Les réponses aux questions les plus fréquentes des parents sur l’examen des yeux, les lunettes, l’œil paresseux et le strabisme.
+    buttonLabel: Voir les questions

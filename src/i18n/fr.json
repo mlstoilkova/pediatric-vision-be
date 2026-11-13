@@ -1,41 +1,10 @@
 {
-  "nav": {
-    "label": "Menu principal",
-    "home": "Accueil",
-    "clinics": "Rendez-vous",
-    "conditions": "Affections",
-    "about": "À propos"
-  },
-  "book": "Prendre rendez-vous",
   "skip": "Aller au contenu",
+  "mainNav": "Menu principal",
   "menu": {
     "open": "Ouvrir le menu",
     "close": "Fermer le menu"
   },
-  "lang": {
-    "label": "Choisir la langue"
-  },
-  "newTab": "(s’ouvre dans un nouvel onglet)",
-  "cta": {
-    "title": "Vous souhaitez prendre rendez-vous ?",
-    "text": "Choisissez la clinique qui vous convient le mieux et réservez directement en ligne. Une question ? N’hésitez pas à appeler le cabinet.",
-    "faq": "Ou consultez d’abord les questions fréquentes"
-  },
-  "footer": {
-    "privacy": "Politique de confidentialité",
-    "faq": "FAQ",
-    "copyright": "© 2026 Pediatric Vision"
-  },
-  "site": {
-    "name": "Pediatric Vision",
-    "description": "Des soins oculaires spécialisés et bienveillants pour les enfants à Louvain, Bruxelles et Aarschot."
-  },
-  "titles": {
-    "home": "Consultations d’ophtalmologie pédiatrique",
-    "clinics": "Cliniques",
-    "conditions": "Prendre soin des yeux des enfants",
-    "about": "Dr Irina Balikova",
-    "faq": "Questions fréquentes",
-    "privacy": "Politique de confidentialité"
-  }
+  "langLabel": "Choisir la langue",
+  "newTab": "(s’ouvre dans un nouvel onglet)"
 }

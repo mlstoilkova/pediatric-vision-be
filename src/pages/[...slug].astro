@@ -1,12 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 import { locales } from '../i18n/config';
-import { pageKeys, pageSlugParam } from '../i18n/routes';
-import { getUi } from '../i18n/ui';
+import { pageKeys, pageSlugParam, type PageKey } from '../i18n/routes';
+import { assertContentIntegrity, getSingleton } from '../lib/content';
 
 // One route generates every page in every language from the table in src/i18n/routes.ts.
-// Step 2 renders a placeholder per page; the real pages replace it one by one in step 4.
-export function getStaticPaths() {
+// Step 3 renders a placeholder per page (title and lead come from the content files);
+// the real pages replace it one by one in step 4.
+export async function getStaticPaths() {
+  await assertContentIntegrity(); // a broken link between content stops the build
   return locales.flatMap((locale) =>
     pageKeys.map((page) => ({
       params: { slug: pageSlugParam(page, locale) },
@@ -16,7 +18,36 @@ export function getStaticPaths() {
 }
 
 const { locale, page } = Astro.props;
-const title = getUi(locale).titles[page];
+
+async function titleAndLead(key: PageKey) {
+  switch (key) {
+    case 'home': {
+      const { hero } = await getSingleton('pageHome', locale);
+      return { title: hero.title, lead: hero.lead };
+    }
+    case 'clinics': {
+      const { header } = await getSingleton('pageClinics', locale);
+      return { title: header.title, lead: header.lead };
+    }
+    case 'conditions': {
+      const { header } = await getSingleton('pageConditions', locale);
+      return { title: header.title, lead: header.lead };
+    }
+    case 'about': {
+      const { hero } = await getSingleton('pageAbout', locale);
+      return { title: hero.name, lead: hero.subtitle };
+    }
+    case 'faq': {
+      const { header } = await getSingleton('pageFaq', locale);
+      return { title: header.title, lead: header.lead };
+    }
+    case 'privacy': {
+      const { title } = await getSingleton('legal', locale);
+      return { title, lead: '' };
+    }
+  }
+}
+const { title, lead } = await titleAndLead(page);
 
 // The closing CTA is not shown on the clinics and articles pages
 const showCta = page !== 'clinics' && page !== 'conditions';
@@ -26,6 +57,7 @@ const showCta = page !== 'clinics' && page !== 'conditions';
   locale={locale}
   page={{ page }}
   title={title}
+  description={lead || undefined}
   showCta={showCta}
   ctaFaqLink={page !== 'faq'}
   ctaTight={page === 'home'}

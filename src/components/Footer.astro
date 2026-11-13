@@ -1,7 +1,7 @@
 ---
 import logo from '../assets/logo.svg';
 import { getClinics } from '../lib/clinics';
-import { getUi } from '../i18n/ui';
+import { getSingleton } from '../lib/content';
 import { pagePath } from '../i18n/routes';
 import type { Locale } from '../i18n/config';
 
@@ -10,7 +10,8 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const ui = getUi(locale);
+const settings = await getSingleton('settingsUi', locale);
+const site = await getSingleton('settingsSite', locale);
 const clinics = await getClinics(locale);
 const clinicsPage = pagePath({ page: 'clinics' }, locale);
 ---
@@ -19,7 +20,7 @@ const clinicsPage = pagePath({ page: 'clinics' }, locale);
   <div class="footer__grid">
     <div class="footer__brand">
       <a href={pagePath({ page: 'home' }, locale)}>
-        <img src={logo.src} width={logo.width} height={logo.height} alt={ui.site.name} />
+        <img src={logo.src} width={logo.width} height={logo.height} alt={site.siteName} />
       </a>
     </div>
     {
@@ -41,9 +42,9 @@ const clinicsPage = pagePath({ page: 'clinics' }, locale);
     }
   </div>
   <div class="footer__bottom">
-    <a href={pagePath({ page: 'privacy' }, locale)}>{ui.footer.privacy}</a>
-    <a href={pagePath({ page: 'faq' }, locale)}>{ui.footer.faq}</a>
-    <span class="footer__copyright">{ui.footer.copyright}</span>
+    <a href={pagePath({ page: 'privacy' }, locale)}>{settings.footer.privacy}</a>
+    <a href={pagePath({ page: 'faq' }, locale)}>{settings.footer.faq}</a>
+    <span class="footer__copyright">{settings.footer.copyright}</span>
   </div>
 </footer>
 

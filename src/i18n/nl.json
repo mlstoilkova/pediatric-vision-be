@@ -1,41 +1,10 @@
 {
-  "nav": {
-    "label": "Hoofdmenu",
-    "home": "Home",
-    "clinics": "Afspraak",
-    "conditions": "Aandoeningen",
-    "about": "Over mij"
-  },
-  "book": "Maak een afspraak",
   "skip": "Ga naar de inhoud",
+  "mainNav": "Hoofdmenu",
   "menu": {
     "open": "Menu openen",
     "close": "Menu sluiten"
   },
-  "lang": {
-    "label": "@Taal kiezen"
-  },
-  "newTab": "(opent in een nieuw tabblad)",
-  "cta": {
-    "title": "Klaar om een afspraak te maken?",
-    "text": "Kies de kliniek die het best past en boek rechtstreeks online. Heeft u een vraag? Bel gerust de praktijk.",
-    "faq": "Of bekijk eerst de veelgestelde vragen"
-  },
-  "footer": {
-    "privacy": "Privacy Policy",
-    "faq": "FAQ",
-    "copyright": "© 2026 Pediatric Vision"
-  },
-  "site": {
-    "name": "Pediatric Vision",
-    "description": "Warme, gespecialiseerde oogzorg voor kinderen in Leuven, Brussel en Aarschot."
-  },
-  "titles": {
-    "home": "Kinderoogheelkunde consultaties",
-    "clinics": "Klinieken",
-    "conditions": "Zorg voor kinderogen",
-    "about": "Dr. Irina Balikova",
-    "faq": "Veelgestelde vragen",
-    "privacy": "Privacybeleid"
-  }
+  "langLabel": "Taal kiezen",
+  "newTab": "(opent in een nieuw tabblad)"
 }

@@ -6,3 +6,6 @@ dist/
 !.env.example
 .DS_Store
 npm-debug.log*
+
+# Decap CMS app copied from node_modules at build time
+public/admin/decap/

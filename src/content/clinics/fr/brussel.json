@@ -7,5 +7,7 @@
   "phone": "02 741 69 99",
   "mapsUrl": "https://maps.app.goo.gl/4Zq3ADfTWVvQdWDE8",
   "bookingUrl": "https://rosa.be/nl/booking/hp/irina-balikova/is-new-patient/?site=63c568d0056d670bc979eca5&skipped-steps=site",
-  "order": 2
+  "order": 2,
+  "photo": "../../../assets/uploads/clinic-brussel.jpg",
+  "photoAlt": "Brussels Eye Doctors, Bruxelles"
 }

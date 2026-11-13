@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Button from './Button.astro';
 import thumbUp from '../assets/characters/thumb-up-stars.png';
-import { getUi } from '../i18n/ui';
+import { getSingleton } from '../lib/content';
 import { pagePath } from '../i18n/routes';
 import type { Locale } from '../i18n/config';
 
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const { locale, faqLink = true, tight = false } = Astro.props;
-const ui = getUi(locale);
+const settings = await getSingleton('settingsUi', locale);
 ---
 
 <!-- Closing call to action. Not shown on the clinics and articles pages. -->
@@ -29,12 +29,12 @@ const ui = getUi(locale);
       class="cta__character bob"
       loading="lazy"
     />
-    <h2 class="cta__title">{ui.cta.title}</h2>
-    <p class="cta__text">{ui.cta.text}</p>
+    <h2 class="cta__title">{settings.cta.title}</h2>
+    <p class="cta__text">{settings.cta.text}</p>
     <Button href={pagePath({ page: 'clinics' }, locale)} variant="dark" locale={locale} class="cta__book">
-      {ui.book}
+      {settings.bookLabel}
     </Button>
-    {faqLink && <a class="cta__faq" href={pagePath({ page: 'faq' }, locale)}>{ui.cta.faq}</a>}
+    {faqLink && <a class="cta__faq" href={pagePath({ page: 'faq' }, locale)}>{settings.cta.faqLink}</a>}
   </div>
 </section>
 

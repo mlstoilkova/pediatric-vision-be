@@ -1,0 +1,27 @@
+nl:
+  header:
+    eyebrow: Voor ouders
+    title: Veelgestelde vragen
+    lead: Antwoorden op de vragen die ouders het vaakst stellen over het oogonderzoek, brillen, een lui oog en scheelzien.
+  topicsLabel: Onderwerpen
+  help:
+    text: Staat uw vraag er niet bij? Bel gerust de kliniek.
+    linkLabel: Naar de klinieken
+en:
+  header:
+    eyebrow: For parents
+    title: Frequently asked questions
+    lead: Answers to the questions parents ask most often about eye examinations, glasses, lazy eye and squint.
+  topicsLabel: Topics
+  help:
+    text: Can’t find your question? Feel free to call the clinic.
+    linkLabel: See the clinics
+fr:
+  header:
+    eyebrow: Pour les parents
+    title: Questions fréquentes
+    lead: Les réponses aux questions que les parents posent le plus souvent sur l’examen des yeux, les lunettes, l’œil paresseux et le strabisme.
+  topicsLabel: Thèmes
+  help:
+    text: Vous ne trouvez pas votre question ? N’hésitez pas à appeler la clinique.
+    linkLabel: Voir les cliniques

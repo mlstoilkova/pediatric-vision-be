@@ -1,0 +1,177 @@
+nl:
+  hero:
+    eyebrow: Over mij
+    name: Dr. Irina Balikova
+    subtitle: Kinderoogarts, gespecialiseerd in pediatrische en genetische oogaandoeningen.
+    intro: Ik ben pediatrisch oogarts met meer dan 10 jaar ervaring in de diagnose en behandeling van oogaandoeningen bij kinderen, zoals amblyopie (lui oog), scheelzien (strabisme) en erfelijke oogaandoeningen.
+    researchLabel: Onderzoek en publicaties
+    image: ../../assets/uploads/dr-irina.jpg
+    imageAlt: Dr. Irina Balikova
+  facts:
+    - title: 10+ jaar
+      text: ervaring in kinderoogheelkunde
+    - title: Doctoraat
+      text: behaald aan KU Leuven
+    - title: Europees diploma
+      text: pediatrische oogheelkunde en strabisme
+  treatments:
+    title: Wat ik behandel
+    intro: Mijn klinische activiteit omvat zowel behandeling zonder operatie als strabismuschirurgie, met aandacht voor een optimale visuele ontwikkeling.
+    cards:
+      - label: Zonder operatie
+        title: Brilcorrectie en amblyopietherapie
+        text: Behandeling met brilcorrectie en amblyopietherapie (lui oog), met aandacht voor een optimale visuele ontwikkeling van uw kind.
+      - label: Chirurgie
+        title: Strabismuschirurgie
+        text: Operatieve correctie van scheelzien (strabisme) bij kinderen.
+  education:
+    title: Opleiding en ervaring
+    intro: Opgebouwd in universitaire centra en kinderziekenhuizen, met een verdere specialisatie in kinderoogheelkunde.
+    rows:
+      - label: Ziekenhuizen
+        value: Kinderziekenhuis Koningin Fabiola, Erasme ziekenhuis (ULB), UZ Gent en UZ Leuven
+      - label: Specialisatie
+        tags:
+          - Kinderoogheelkunde
+          - Strabismechirurgie
+          - Elektrofysiologie
+          - Oftalmogenetica
+      - label: Doctoraat
+        value: KU Leuven
+      - label: Postuniversitair
+        value: Tweejarige opleiding pediatrische oogheelkunde en strabisme (DIU, SFO, Parijs)
+      - label: Europees diploma
+        value: Pediatrische oogheelkunde en strabisme
+  approach:
+    eyebrow: Mijn aanpak
+    statement: Ik benader elk kind op een rustige en respectvolle manier, met aandacht voor zowel het kind als de ouders.
+    text: Kinderen begeleiden in hun visuele ontwikkeling en vertrouwen opbouwen vormen voor mij een essentieel onderdeel van mijn werk.
+  research:
+    title: Onderzoek en publicaties
+    paragraphs:
+      - Mijn klinische activiteit wordt ondersteund door wetenschappelijk onderzoek, met publicaties in internationale, peer-reviewed tijdschriften binnen de oftalmologie en genetica.
+      - Daarnaast volg ik regelmatig cursussen, congressen en observerships, om de meest actuele inzichten en technieken in de praktijk toe te passen.
+    card:
+      eyebrow: PubMed
+      title: Wetenschappelijke publicaties
+      text: Overzicht van peer-reviewed artikels in oftalmologie en genetica.
+      linkLabel: Bekijk op PubMed↗
+      linkUrl: https://pubmed.ncbi.nlm.nih.gov/?term=Balikova+I
+en:
+  hero:
+    eyebrow: About me
+    name: Dr. Irina Balikova
+    subtitle: Paediatric ophthalmologist, specialising in paediatric and genetic eye conditions.
+    intro: I am a paediatric ophthalmologist with more than 10 years of experience in diagnosing and treating eye conditions in children, such as amblyopia (lazy eye), strabismus (squint) and inherited eye conditions.
+    researchLabel: Research and publications
+    image: ../../assets/uploads/dr-irina.jpg
+    imageAlt: Dr. Irina Balikova
+  facts:
+    - title: 10+ years
+      text: experience in paediatric ophthalmology
+    - title: PhD
+      text: obtained at KU Leuven
+    - title: European diploma
+      text: paediatric ophthalmology and strabismus
+  treatments:
+    title: What I treat
+    intro: My clinical work covers both non-surgical treatment and strabismus surgery, with a focus on optimal visual development.
+    cards:
+      - label: Non-surgical
+        title: Glasses and amblyopia therapy
+        text: Treatment with glasses and amblyopia (lazy eye) therapy, with a focus on your child’s optimal visual development.
+      - label: Surgery
+        title: Strabismus surgery
+        text: Surgical correction of squint (strabismus) in children.
+  education:
+    title: Training and experience
+    intro: Built up in university centres and children’s hospitals, with further specialisation in paediatric ophthalmology.
+    rows:
+      - label: Hospitals
+        value: Queen Fabiola Children’s University Hospital, Erasme Hospital (ULB), Ghent University Hospital and UZ Leuven
+      - label: Specialisation
+        tags:
+          - Paediatric ophthalmology
+          - Strabismus surgery
+          - Electrophysiology
+          - Ophthalmic genetics
+      - label: PhD
+        value: KU Leuven
+      - label: Postgraduate
+        value: Two-year programme in paediatric ophthalmology and strabismus (DIU, SFO, Paris)
+      - label: European diploma
+        value: Paediatric ophthalmology and strabismus
+  approach:
+    eyebrow: My approach
+    statement: I approach every child in a calm and respectful way, with attention for both the child and the parents.
+    text: Guiding children through their visual development and building trust are an essential part of my work.
+  research:
+    title: Research and publications
+    paragraphs:
+      - My clinical work is supported by scientific research, with publications in international peer-reviewed journals in ophthalmology and genetics.
+      - I also regularly attend courses, conferences and observerships, to bring the latest insights and techniques into my practice.
+    card:
+      eyebrow: PubMed
+      title: Scientific publications
+      text: Overview of peer-reviewed articles in ophthalmology and genetics.
+      linkLabel: View on PubMed↗
+      linkUrl: https://pubmed.ncbi.nlm.nih.gov/?term=Balikova+I
+fr:
+  hero:
+    eyebrow: À propos
+    name: Dr Irina Balikova
+    subtitle: Ophtalmologue pédiatrique, spécialisée dans les affections oculaires pédiatriques et génétiques.
+    intro: Je suis ophtalmologue pédiatrique et j’ai plus de 10 ans d’expérience dans le diagnostic et le traitement des affections oculaires de l’enfant, comme l’amblyopie (œil paresseux), le strabisme et les maladies oculaires héréditaires.
+    researchLabel: Recherche et publications
+    image: ../../assets/uploads/dr-irina.jpg
+    imageAlt: Dr Irina Balikova
+  facts:
+    - title: 10+ ans
+      text: d’expérience en ophtalmologie pédiatrique
+    - title: Doctorat
+      text: obtenu à la KU Leuven
+    - title: Diplôme européen
+      text: en ophtalmologie pédiatrique et strabisme
+  treatments:
+    title: Ce que je traite
+    intro: Mon activité clinique comprend à la fois des traitements non chirurgicaux et la chirurgie du strabisme, avec une attention particulière au développement visuel optimal.
+    cards:
+      - label: Sans chirurgie
+        title: Correction optique et traitement de l’amblyopie
+        text: Traitement par correction optique et traitement de l’amblyopie (œil paresseux), en veillant au développement visuel optimal de votre enfant.
+      - label: Chirurgie
+        title: Chirurgie du strabisme
+        text: Correction chirurgicale du strabisme chez l’enfant.
+  education:
+    title: Formation et expérience
+    intro: Acquise dans des centres universitaires et des hôpitaux pédiatriques, avec une spécialisation complémentaire en ophtalmologie pédiatrique.
+    rows:
+      - label: Hôpitaux
+        value: Hôpital Universitaire des Enfants Reine Fabiola, hôpital Erasme (ULB), UZ Gent et UZ Leuven
+      - label: Spécialisation
+        tags:
+          - Ophtalmologie pédiatrique
+          - Chirurgie du strabisme
+          - Électrophysiologie
+          - Génétique ophtalmologique
+      - label: Doctorat
+        value: KU Leuven
+      - label: Post-universitaire
+        value: Formation de deux ans en ophtalmologie pédiatrique et strabisme (DIU, SFO, Paris)
+      - label: Diplôme européen
+        value: Ophtalmologie pédiatrique et strabisme
+  approach:
+    eyebrow: Mon approche
+    statement: J’aborde chaque enfant avec calme et respect, avec une attention portée tant à l’enfant qu’aux parents.
+    text: Accompagner les enfants dans leur développement visuel et instaurer la confiance sont pour moi des éléments essentiels de mon travail.
+  research:
+    title: Recherche et publications
+    paragraphs:
+      - Mon activité clinique s’appuie sur la recherche scientifique, avec des publications dans des revues internationales à comité de lecture en ophtalmologie et en génétique.
+      - Je participe également régulièrement à des formations, des congrès et des observerships, afin d’appliquer dans ma pratique les connaissances et techniques les plus récentes.
+    card:
+      eyebrow: PubMed
+      title: Publications scientifiques
+      text: Aperçu des articles publiés dans des revues à comité de lecture en ophtalmologie et en génétique.
+      linkLabel: Voir sur PubMed↗
+      linkUrl: https://pubmed.ncbi.nlm.nih.gov/?term=Balikova+I

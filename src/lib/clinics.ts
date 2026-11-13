@@ -1,4 +1,4 @@
-import { getCollection } from 'astro:content';
+import { getLocalized } from './content';
 import type { Locale } from '../i18n/config';
 
 export interface Clinic {
@@ -16,6 +16,8 @@ export interface Clinic {
   phoneHref: string;
   mapsUrl: string;
   bookingUrl: string;
+  photo: ImageMetadata;
+  photoAlt: string;
   order: number;
 }
 
@@ -26,11 +28,12 @@ function toTelHref(phone: string): string {
 
 /** Clinics for a locale, in the order set in the CMS. */
 export async function getClinics(locale: Locale): Promise<Clinic[]> {
-  const entries = await getCollection('clinics', (entry) => entry.id.startsWith(`${locale}/`));
+  // A clinic (or a field of it) not translated yet falls back to the Dutch text
+  const entries = await getLocalized('clinics', locale);
   return entries
     .map(({ id, data }) => ({
       ...data,
-      slug: id.split('/')[1],
+      slug: id,
       websiteLabel: new URL(data.website).hostname.replace(/^www\./, ''),
       phoneHref: toTelHref(data.phone),
     }))

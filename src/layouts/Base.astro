@@ -13,6 +13,7 @@ import { SITE, FEATURES } from '../config';
 import { defaultLocale, locales, ogLocales, type Locale } from '../i18n/config';
 import { pagePath, type PageRef } from '../i18n/routes';
 import { getUi } from '../i18n/ui';
+import { getSingleton } from '../lib/content';
 
 interface Props {
   locale: Locale;
@@ -30,9 +31,13 @@ interface Props {
 
 const { locale, page, title, description, showCta = true, ctaFaqLink = true, ctaTight = false } = Astro.props;
 const ui = getUi(locale);
+const site = await getSingleton('settingsSite', locale);
 
-const metaDescription = description ?? ui.site.description;
-const fullTitle = page.page === 'home' ? `${ui.site.name} · ${title}` : `${title} · ${ui.site.name}`;
+// Per-page title and description can be overridden in the admin (Instellingen). Articles use their own.
+const seo = page.articleSlugs ? undefined : site.seo[page.page];
+const metaTitle = seo?.title || title;
+const metaDescription = seo?.description || description || site.description;
+const fullTitle = page.page === 'home' ? `${site.siteName} · ${metaTitle}` : `${metaTitle} · ${site.siteName}`;
 const absolute = (l: Locale) => new URL(pagePath(page, l), SITE.url).href;
 ---
 
@@ -51,7 +56,7 @@ const absolute = (l: Locale) => new URL(pagePath(page, l), SITE.url).href;
     <link rel="alternate" hreflang="x-default" href={absolute(defaultLocale)} />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={ui.site.name} />
+    <meta property="og:site_name" content={site.siteName} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={absolute(locale)} />

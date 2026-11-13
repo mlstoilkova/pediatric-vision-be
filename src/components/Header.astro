@@ -2,6 +2,7 @@
 import logo from '../assets/logo.svg';
 import LangSwitcher from './LangSwitcher.astro';
 import { getUi } from '../i18n/ui';
+import { getSingleton } from '../lib/content';
 import { pagePath, type PageRef } from '../i18n/routes';
 import type { Locale } from '../i18n/config';
 
@@ -12,13 +13,15 @@ interface Props {
 
 const { locale, page } = Astro.props;
 const ui = getUi(locale);
+const settings = await getSingleton('settingsUi', locale);
+const site = await getSingleton('settingsSite', locale);
 
-// Order and labels follow the prototype: Home · Afspraak (clinics) · Over mij · Aandoeningen (articles)
+// Order follows the prototype: Home · Afspraak (clinics) · Over mij · Aandoeningen (articles). Labels are content.
 const navItems = [
-  { key: 'home', label: ui.nav.home },
-  { key: 'clinics', label: ui.nav.clinics },
-  { key: 'about', label: ui.nav.about },
-  { key: 'conditions', label: ui.nav.conditions },
+  { key: 'home', label: settings.nav.home },
+  { key: 'clinics', label: settings.nav.clinics },
+  { key: 'about', label: settings.nav.about },
+  { key: 'conditions', label: settings.nav.conditions },
 ] as const;
 
 const items = navItems.map((item) => ({
@@ -26,7 +29,7 @@ const items = navItems.map((item) => ({
   href: pagePath({ page: item.key }, locale),
   active: page.page === item.key,
   // aria-current="page" only on the exact page; an article keeps its section highlighted
-  current: page.page === item.key && !page.article,
+  current: page.page === item.key && !page.articleSlugs,
 }));
 ---
 
@@ -51,12 +54,12 @@ const items = navItems.map((item) => ({
     </button>
 
     <a class="logo" href={pagePath({ page: 'home' }, locale)}>
-      <img src={logo.src} width={logo.width} height={logo.height} alt={ui.site.name} />
+      <img src={logo.src} width={logo.width} height={logo.height} alt={site.siteName} />
     </a>
 
     <div class="header__row">
       <span class="header__spacer" aria-hidden="true"></span>
-      <nav class="desknav" aria-label={ui.nav.label}>
+      <nav class="desknav" aria-label={ui.mainNav}>
         {
           items.map((item) => (
             <a
@@ -76,7 +79,7 @@ const items = navItems.map((item) => ({
   </div>
 
   <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
-    <nav aria-label={ui.nav.label}>
+    <nav aria-label={ui.mainNav}>
       <ul class="mobile-menu__list">
         {
           items.map((item) => (
@@ -93,7 +96,7 @@ const items = navItems.map((item) => ({
         }
       </ul>
     </nav>
-    <a class="mobile-menu__book" href={pagePath({ page: 'clinics' }, locale)}>{ui.book}</a>
+    <a class="mobile-menu__book" href={pagePath({ page: 'clinics' }, locale)}>{settings.bookLabel}</a>
   </div>
 </header>
 

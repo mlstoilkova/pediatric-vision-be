@@ -1,0 +1,24 @@
+nl:
+  header:
+    eyebrow: Aandoeningen
+    title: Zorg voor kinderogen
+    lead: "Heldere informatie over oogaandoeningen bij kinderen: waar u op let, wanneer u best een oogarts raadpleegt en hoe de opvolging verloopt."
+  booking:
+    title: Maak een afspraak
+    text: Kies uw kliniek en boek rechtstreeks online.
+en:
+  header:
+    eyebrow: Conditions
+    title: Children’s eye care
+    lead: "Clear information about eye conditions in children: what to look out for, when to see an eye doctor and how follow-up works."
+  booking:
+    title: Book an appointment
+    text: Choose your clinic and book directly online.
+fr:
+  header:
+    eyebrow: Affections
+    title: Prendre soin des yeux des enfants
+    lead: "Des informations claires sur les affections oculaires de l’enfant : à quoi être attentif, quand consulter un ophtalmologue et comment se déroule le suivi."
+  booking:
+    title: Prendre rendez-vous
+    text: Choisissez votre clinique et réservez directement en ligne.

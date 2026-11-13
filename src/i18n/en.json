@@ -1,41 +1,10 @@
 {
-  "nav": {
-    "label": "Main menu",
-    "home": "Home",
-    "clinics": "Appointment",
-    "conditions": "Conditions",
-    "about": "About me"
-  },
-  "book": "Book an appointment",
   "skip": "Skip to content",
+  "mainNav": "Main menu",
   "menu": {
     "open": "Open menu",
     "close": "Close menu"
   },
-  "lang": {
-    "label": "Choose language"
-  },
-  "newTab": "(opens in a new tab)",
-  "cta": {
-    "title": "Ready to book an appointment?",
-    "text": "Choose the clinic that suits you best and book directly online. Have a question? Feel free to call the practice.",
-    "faq": "Or check the frequently asked questions first"
-  },
-  "footer": {
-    "privacy": "Privacy Policy",
-    "faq": "FAQ",
-    "copyright": "© 2026 Pediatric Vision"
-  },
-  "site": {
-    "name": "Pediatric Vision",
-    "description": "Warm, specialised eye care for children in Leuven, Brussels and Aarschot."
-  },
-  "titles": {
-    "home": "Paediatric eye consultations",
-    "clinics": "Clinics",
-    "conditions": "Caring for children’s eyes",
-    "about": "Dr. Irina Balikova",
-    "faq": "Frequently asked questions",
-    "privacy": "Privacy policy"
-  }
+  "langLabel": "Choose language",
+  "newTab": "(opens in a new tab)"
 }

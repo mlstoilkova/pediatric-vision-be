@@ -7,7 +7,11 @@ export type Ui = typeof nl;
 
 const dictionaries: Record<Locale, Ui> = { nl, en, fr };
 
-/** UI strings for a locale. Texts come from the doctor-approved translations (design/content/i18n). */
+/**
+ * Technical strings that are not page copy: screen-reader labels, the skip link, "opens in a new tab".
+ * Everything a visitor reads as content (nav labels, buttons, CTA, footer) lives in src/content and is
+ * edited in the admin.
+ */
 export function getUi(locale: Locale): Ui {
   return dictionaries[locale];
 }

@@ -1,0 +1,54 @@
+nl:
+  nav:
+    home: Home
+    clinics: Afspraak
+    about: Over mij
+    conditions: Aandoeningen
+  bookLabel: Maak een afspraak
+  cta:
+    title: Klaar om een afspraak te maken?
+    text: Kies de kliniek die het best past en boek rechtstreeks online. Heeft u een vraag? Bel gerust de praktijk.
+    faqLink: Of bekijk eerst de veelgestelde vragen
+  footer:
+    privacy: Privacy Policy
+    faq: FAQ
+    copyright: © 2026 Pediatric Vision
+  labels:
+    readArticle: Lees het artikel
+    readingTime: "{n} min lezen"
+en:
+  nav:
+    home: Home
+    clinics: Appointment
+    about: About me
+    conditions: Conditions
+  bookLabel: Book an appointment
+  cta:
+    title: Ready to book an appointment?
+    text: Choose the clinic that suits you best and book directly online. Have a question? Feel free to call the practice.
+    faqLink: Or check the frequently asked questions first
+  footer:
+    privacy: Privacy Policy
+    faq: FAQ
+    copyright: © 2026 Pediatric Vision
+  labels:
+    readArticle: Read the article
+    readingTime: "{n} min read"
+fr:
+  nav:
+    home: Accueil
+    clinics: Rendez-vous
+    about: À propos
+    conditions: Affections
+  bookLabel: Prendre rendez-vous
+  cta:
+    title: Vous souhaitez prendre rendez-vous ?
+    text: Choisissez la clinique qui vous convient le mieux et réservez directement en ligne. Une question ? N’hésitez pas à appeler le cabinet.
+    faqLink: Ou consultez d’abord les questions fréquentes
+  footer:
+    privacy: Politique de confidentialité
+    faq: FAQ
+    copyright: © 2026 Pediatric Vision
+  labels:
+    readArticle: Lire l’article
+    readingTime: "{n} min de lecture"

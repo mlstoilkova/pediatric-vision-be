@@ -7,5 +7,7 @@
   "phone": "016 55 17 71",
   "mapsUrl": "https://maps.app.goo.gl/5RuNK3Fz7Y4KQNav5",
   "bookingUrl": "https://www.rztienen.be/nl/zorgaanbod/artsen/balikova-irina",
-  "order": 3
+  "order": 3,
+  "photo": "../../../assets/uploads/clinic-aarschot.jpg",
+  "photoAlt": "Medisch Centrum Aarschot, Aarschot"
 }
