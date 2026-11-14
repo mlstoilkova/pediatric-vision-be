@@ -1,0 +1,346 @@
+---
+import Button from '../components/Button.astro';
+import Character from '../components/Character.astro';
+import Photo from '../components/Photo.astro';
+import PageHead from '../components/PageHead.astro';
+import { getSingleton } from '../lib/content';
+import { getClinics } from '../lib/clinics';
+import { faqHref } from '../lib/faq';
+import { pagePath } from '../i18n/routes';
+import { getUi } from '../i18n/ui';
+import type { Locale } from '../i18n/config';
+
+import locationsChar from '../assets/characters/locations.png';
+import juggler from '../assets/characters/juggler.png';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const c = await getSingleton('pageClinics', locale);
+const ui = await getSingleton('settingsUi', locale);
+const tech = getUi(locale);
+const clinics = await getClinics(locale);
+const homeExpect = pagePath({ page: 'home' }, locale) + '#verwachtenB';
+---
+
+<!-- ================= Header with city chips ================= -->
+<section class="container head">
+  <PageHead eyebrow={c.header.eyebrow} title={c.header.title} lead={c.header.lead} character={locationsChar} characterWidth={160}>
+    <div class="cities">
+      {clinics.map((clinic) => <a class="city" href={`#${clinic.slug}`}>{clinic.city}</a>)}
+    </div>
+  </PageHead>
+</section>
+
+<!-- ================= One card per clinic. The photo alternates sides on desktop. ================= -->
+<section class="container clinics">
+  {
+    clinics.map((clinic, i) => (
+      <article id={clinic.slug} class:list={['clinic', { 'clinic--flip': i % 2 === 1 }]}>
+        <Photo
+          src={clinic.photo}
+          alt={clinic.photoAlt}
+          widths={[480, 720, 960]}
+          sizes="(min-width: 1281px) 620px, (min-width: 761px) 50vw, 100vw"
+          class="clinic__img"
+        />
+        <div class="clinic__body">
+          <div class="clinic__title">
+            <span class="t-eyebrow">{clinic.city}</span>
+            <h2 class="clinic__name">{clinic.name}</h2>
+            <a class="clinic__site" href={clinic.website} target="_blank" rel="noopener">
+              {clinic.websiteLabel}↗<span class="sr-only">{tech.newTab}</span>
+            </a>
+          </div>
+          <div class="clinic__facts">
+            <div class="fact">
+              <span class="fact__label">{c.labels.address}</span>
+              <div class="fact__value">
+                <a
+                  class="fact__address"
+                  href={clinic.mapsUrl}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={`${clinic.addressLine1}, ${clinic.addressLine2} ${tech.newTab}`}
+                >
+                  {clinic.addressLine1}<br />{clinic.addressLine2}
+                </a>
+              </div>
+            </div>
+            <div class="fact">
+              <span class="fact__label">{c.labels.phone}</span>
+              <div class="fact__value"><a class="fact__phone" href={clinic.phoneHref}>✆ {clinic.phone}</a></div>
+            </div>
+          </div>
+          <div class="clinic__action">
+            <Button href={clinic.bookingUrl} variant="primary" external locale={locale}>{ui.bookLabel}</Button>
+          </div>
+        </div>
+      </article>
+    ))
+  }
+</section>
+
+<!-- ================= "Allow 1 to 1.5 hours" ================= -->
+<section class="container banner-section">
+  <div class="banner">
+    <Character src={juggler} width={130} class="banner__char" />
+    <div class="banner__text">
+      <span class="banner__pill">{c.banner.pill}</span>
+      <p class="banner__lead">{c.banner.text}</p>
+      <p class="banner__faq">
+        <span>{c.banner.faqPrompt}</span>
+        <a href={faqHref(locale, c.banner.faqTopic)}>{c.banner.faqLabel}</a>
+      </p>
+    </div>
+    <Button href={homeExpect} variant="secondary">{c.banner.expectLabel}</Button>
+  </div>
+</section>
+
+<style>
+  .head {
+    padding-top: clamp(36px, 5vw, 72px);
+  }
+
+  .cities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 6px;
+  }
+
+  .city {
+    display: inline-flex;
+    align-items: center;
+    height: 48px;
+    padding: 0 20px;
+    border-radius: var(--r-pill);
+    background: var(--c-cream);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--c-ink);
+    transition: background-color 0.15s ease;
+  }
+
+  .city:hover {
+    background: var(--c-coral);
+    color: var(--c-ink);
+  }
+
+  .clinics {
+    padding-top: clamp(36px, 4vw, 56px);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .clinic {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    overflow: hidden;
+    border-radius: var(--r-card);
+    background: var(--c-cream);
+  }
+
+  .clinic :global(.clinic__img) {
+    width: 100%;
+    height: 100%;
+    min-height: 360px;
+    object-fit: cover;
+    order: 0;
+  }
+
+  .clinic--flip :global(.clinic__img) {
+    order: 2;
+  }
+
+  .clinic__body {
+    order: 1;
+    padding: clamp(24px, 3.4vw, 52px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  .clinic__title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .clinic__name {
+    font-size: clamp(26px, 2.6vw, 36px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    color: var(--c-ink);
+  }
+
+  .clinic__site {
+    align-self: flex-start;
+    padding: 6px 0;
+    font-size: 16px;
+    color: var(--c-teal-text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .clinic__facts {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fact {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+    gap: 16px;
+    align-items: baseline;
+    padding: 14px 0;
+    border-top: 1px solid var(--c-hairline-soft);
+  }
+
+  .fact__label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+  }
+
+  .fact__value {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--c-ink);
+  }
+
+  .fact__address {
+    color: var(--c-ink);
+    text-decoration: underline;
+    text-decoration-color: rgba(27, 62, 112, 0.3);
+    text-underline-offset: 4px;
+  }
+
+  .fact__phone {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    font-weight: 600;
+    color: var(--c-ink);
+  }
+
+  .clinic__action {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 4px;
+  }
+
+  @media (max-width: 760px) {
+    .clinic {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .clinic :global(.clinic__img),
+    .clinic--flip :global(.clinic__img) {
+      order: 0;
+      height: 210px;
+      min-height: 0;
+    }
+  }
+
+  .banner-section {
+    padding-top: var(--section-top);
+    padding-bottom: var(--section-top);
+  }
+
+  .banner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px 32px;
+    padding: clamp(24px, 3.4vw, 44px);
+    border-radius: var(--r-panel);
+    background: var(--c-mint);
+  }
+
+  .banner :global(.banner__char) {
+    width: clamp(96px, 10vw, 130px);
+  }
+
+  .banner__text {
+    flex: 1 1 360px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  /*
+    In the prototype this banner shares an attribute with the Home tip box, so it takes over that box's
+    layout on tablet (stacked and centred) and on mobile (plain block). Reproduced as drawn.
+  */
+  @media (min-width: 761px) and (max-width: 1100px) {
+    .banner {
+      margin: 0;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .banner {
+      display: block;
+      margin-top: 28px;
+    }
+
+    .banner::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+
+  .banner__pill {
+    display: inline-block;
+    padding: 9px 18px;
+    border-radius: var(--r-pill);
+    background: var(--c-coral);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--c-ink);
+  }
+
+  .banner__lead {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--c-ink);
+  }
+
+  .banner__faq {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 8px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--c-ink);
+  }
+
+  .banner__faq a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    font-weight: 600;
+    color: var(--c-navy);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

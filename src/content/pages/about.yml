@@ -55,7 +55,7 @@ nl:
       eyebrow: PubMed
       title: Wetenschappelijke publicaties
       text: Overzicht van peer-reviewed artikels in oftalmologie en genetica.
-      linkLabel: Bekijk op PubMed↗
+      linkLabel: Bekijk op PubMed
       linkUrl: https://pubmed.ncbi.nlm.nih.gov/?term=Balikova+I
 en:
   hero:
@@ -114,7 +114,7 @@ en:
       eyebrow: PubMed
       title: Scientific publications
       text: Overview of peer-reviewed articles in ophthalmology and genetics.
-      linkLabel: View on PubMed↗
+      linkLabel: View on PubMed
       linkUrl: https://pubmed.ncbi.nlm.nih.gov/?term=Balikova+I
 fr:
   hero:
@@ -173,5 +173,5 @@ fr:
       eyebrow: PubMed
       title: Publications scientifiques
       text: Aperçu des articles publiés dans des revues à comité de lecture en ophtalmologie et en génétique.
-      linkLabel: Voir sur PubMed↗
+      linkLabel: Voir sur PubMed
       linkUrl: https://pubmed.ncbi.nlm.nih.gov/?term=Balikova+I

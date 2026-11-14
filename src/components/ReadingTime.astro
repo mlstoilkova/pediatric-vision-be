@@ -1,0 +1,30 @@
+---
+interface Props {
+  /** The label with {n} for the minutes, e.g. "{n} min lezen". */
+  label: string;
+  minutes: number;
+}
+const { label, minutes } = Astro.props;
+---
+
+<span class="reading-time">
+  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
+    <circle cx="8" cy="8" r="6.3"></circle>
+    <path d="M8 4.6V8l2.3 1.5"></path>
+  </svg>
+  {label.replace('{n}', String(minutes))}
+</span>
+
+<style>
+  .reading-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--c-muted);
+  }
+
+  .reading-time svg {
+    flex: 0 0 auto;
+  }
+</style>

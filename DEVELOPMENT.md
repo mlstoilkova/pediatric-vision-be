@@ -33,7 +33,10 @@ npm run dev
 | Reading content, Dutch fallback, integrity check | `src/lib/content.ts`, `src/lib/clinics.ts` |
 | Header, footer, closing CTA, buttons | `src/components/` |
 | Page shell, SEO tags, hreflang | `src/layouts/Base.astro` |
-| Pages | `src/pages/[...slug].astro` generates all 18 URLs (placeholders until step 4) |
+| Pages | `src/pages/[...slug].astro` generates all 30 URLs (6 pages and 4 articles, in 3 languages) and picks the view |
+| Page views | `src/views/` (Home, Klinieken, Zorg voor kinderogen, Article, Over mij, FAQ, Privacy) |
+| Shared pieces | `src/components/` (Photo, Character, PageHead, ArticleCard, Prose for Markdown text, ...) |
+| Markdown, articles, FAQ loaders | `src/lib/markdown.ts`, `articles.ts`, `faq.ts` |
 | Admin config generator | `scripts/admin-config.mjs` writes `public/admin/config.yml` |
 
 ## Content
@@ -89,19 +92,35 @@ Nothing else changes at launch.
 
 ## Where the build differs from the design, on purpose
 - **Footer copyright colour** is `#5B6C85`, not the design's `#98A4B6` (about 2.5:1 contrast, below WCAG AA).
-- **Headings are not hyphenated.** The prototype has no `lang` attribute, so it never hyphenated. Setting `lang` correctly would
-  have turned on `hyphens: auto` and split words like "af-spraak".
+- **Hyphenation follows each prototype.** The English and French prototype pages have a `lang` attribute, so their headings
+  hyphenate (`hyphens: auto`) where the design asks for it; the Dutch page has none, so Dutch headings never did. Same here
+  (`html:not([lang='nl'])` in `global.css`).
 - **The footer city names are paragraphs, not `h3`s**, so heading order stays valid on every page.
 - **Language choice is not stored.** The language is in the URL, and every link stays in it. No cookies or local storage are used.
 - **Articles are blocks, not one Markdown body plus a red-flag field.** The prototype puts the red-flag box in the middle of the
   text (and the strabismus article has two), so the box has to be positionable.
 - **Emoji in the article sources are dropped**, as the prototype does.
+- **A long "word/word" in an article heading may break after the slash** on narrow screens. In the prototype the heading runs off
+  the screen at 360px (e.g. "ophthalmologist/orthoptist").
+- **Numbered lists** (amblyopia causes) are real `<ol>`s styled like the prototype's small dotted items, with the number inline.
+- **Reading time is the same everywhere.** The French prototype said 3 minutes on the overview but 4 on the article page.
+- **Article card images are decorative** (`alt=""`, as in the prototype: the title next to them says it). The article page keeps
+  the real alt text.
+- **The Klinieken banner** reproduces the layout it inherits in the prototype (stacked on tablet, plain block on mobile).
+- **Anchor links** scroll with one offset (150px, 120px on mobile) so a heading is never hidden under the sticky header.
 - **Some UI strings are new** (not in the design) and still need the doctor's review in all three languages: `skip`, `menu.open`,
   `menu.close`, `newTab` and `mainNav` in `src/i18n/*.json`, the alt texts of the four article images, and the privacy page title.
-- **No preview pane in the admin** (the README asks for one styled with the site's CSS). It needs the real pages from step 4.
+- **No preview pane in the admin** (the README asks for one styled with the site's CSS). The real pages now exist, so this can be added.
 
 ## Known limits
 - `npm audit` reports vulnerabilities inside Decap's own dependency tree (for example an old markdown parser). They sit in the
   editor app used by the two logged-in editors; the public site is static and contains none of it.
 - The first time Decap saves a file it rewrites it in its own key order and line wrapping. The content is identical; only the
   formatting changes once per file.
+
+## How the pages were checked against the prototype
+Every page, in all three languages, at 360, 768, 1024 and 1440px, was compared with its prototype page by matching every text
+and image in order and measuring position and size. 106 of 108 checks match to within 1.7px, page height included. The other two
+(English and French myopia article at 360px) differ by one line because of the slash break above. All 30 pages pass the axe
+accessibility checks at desktop and mobile width, all 474 internal links and anchors resolve, and the home page downloads about
+320 KB on a phone (the hero photo is 20 KB).

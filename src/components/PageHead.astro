@@ -1,0 +1,76 @@
+---
+import type { ImageMetadata } from 'astro';
+import Character from './Character.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  character: ImageMetadata;
+  /** Largest width of the character in px (it scales with the screen up to this). */
+  characterWidth?: number;
+  /** CSS width of the character on desktop, e.g. clamp(110px,12vw,160px). */
+  characterSize?: string;
+}
+
+const { eyebrow, title, lead, character, characterWidth = 160, characterSize = 'clamp(110px, 12vw, 160px)' } = Astro.props;
+---
+
+<!-- Page header: eyebrow, H1, lead, optional extra (slot) and one character at the bottom right. -->
+<div class="pagehead">
+  <div class="pagehead__text">
+    <span class="t-eyebrow">{eyebrow}</span>
+    <h1 class="t-page-h1">{title}</h1>
+    <p class="t-lead pagehead__lead">{lead}</p>
+    <slot />
+  </div>
+  <Character src={character} width={characterWidth} bob={8} class="pagehead__char" style={`width:${characterSize}`} />
+</div>
+
+<style>
+  .pagehead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px 32px;
+  }
+
+  .pagehead__text {
+    flex: 1 1 420px;
+    min-width: 0;
+    max-width: 46em;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .pagehead__text :global(.t-page-h1) {
+    overflow-wrap: break-word;
+  }
+
+  .pagehead__lead {
+    max-width: 36em;
+  }
+
+  /* Mobile: the character moves to the top right and the text keeps clear of it */
+  @media (max-width: 760px) {
+    .pagehead {
+      display: block;
+      position: relative;
+    }
+
+    .pagehead__text > :global(.t-eyebrow),
+    .pagehead__text > :global(.t-page-h1),
+    .pagehead__lead {
+      padding-right: 84px;
+    }
+
+    .pagehead :global(.pagehead__char) {
+      position: absolute;
+      top: 18px;
+      right: -6px;
+      width: 80px !important;
+    }
+  }
+</style>

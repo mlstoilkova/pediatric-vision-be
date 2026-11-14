@@ -1,4 +1,4 @@
-import { defineCollection } from 'astro:content';
+import { defineCollection, type ImageFunction } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { defaultLocale, locales, type Locale } from './i18n/config';
@@ -15,7 +15,7 @@ import { defaultLocale, locales, type Locale } from './i18n/config';
 */
 
 // The admin writes an empty optional field as `null`. Treat null like "not set" everywhere.
-const nn = <T extends z.ZodTypeAny>(schema: T) => z.preprocess((value) => (value === null ? undefined : value), schema) as unknown as T;
+const nn = <T extends z.ZodType>(schema: T) => z.preprocess((value) => (value === null ? undefined : value), schema) as unknown as T;
 const text = (max = 400) => nn(z.string().max(max).default(''));
 const url = z.url();
 const order = z.number().int();
@@ -98,15 +98,19 @@ const faqQuestions = defineCollection({
 // file collections). Dutch is checked strictly. English and French are lenient: whatever is missing there
 // falls back to the Dutch text, and an image that is missing there falls back to the Dutch image.
 const obj = <T extends z.ZodRawShape>(shape: T) => nn(z.object(shape).prefault({} as never));
-const list = <T extends z.ZodTypeAny>(item: T) => nn(z.array(item).default([]));
+const list = <T extends z.ZodType>(item: T) => nn(z.array(item).default([]));
 const str = nn(z.string().default(''));
 
+type ImageSchema = ReturnType<ImageFunction>;
+
 function localized<T extends z.ZodRawShape>(
-  shape: (img: () => z.ZodTypeAny, optional: boolean) => T,
-  { image }: { image: () => z.ZodTypeAny },
+  shape: (img: () => ImageSchema, optional: boolean) => T,
+  { image }: { image: ImageFunction },
 ) {
   const strict = z.object(shape(() => image(), false));
-  const lenient = () => nn(z.object(shape(() => nn(image().optional()), true)).prefault({} as never));
+  // English and French may leave the image out: the Dutch one is used (the admin copies it anyway)
+  const lenientImage = () => nn(image().optional()) as unknown as ImageSchema;
+  const lenient = () => nn(z.object(shape(lenientImage, true)).prefault({} as never));
   // One block per language from src/i18n/config.ts: adding a language there adds it here.
   const others = Object.fromEntries(locales.filter((l) => l !== defaultLocale).map((l) => [l, lenient()]));
   return z.object({ [defaultLocale]: strict, ...others } as { nl: typeof strict } & Record<Exclude<Locale, 'nl'>, ReturnType<typeof lenient>>);

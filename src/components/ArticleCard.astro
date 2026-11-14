@@ -1,0 +1,227 @@
+---
+import Photo from './Photo.astro';
+import ReadingTime from './ReadingTime.astro';
+import type { Article } from '../lib/articles';
+
+interface Props {
+  article: Article;
+  /** home: small card on the homepage · list: card on the articles page · featured: the wide first article */
+  variant?: 'home' | 'list' | 'featured';
+  summary?: string;
+  readLabel: string;
+  readingTimeLabel: string;
+}
+
+const { article, variant = 'list', summary, readLabel, readingTimeLabel } = Astro.props;
+const text = summary ?? article.summary;
+const sizes = {
+  home: '(min-width: 1101px) 28vw, (min-width: 761px) 32vw, 78vw',
+  list: '(min-width: 1101px) 28vw, (min-width: 761px) 45vw, 90vw',
+  featured: '(min-width: 1101px) 55vw, 100vw',
+}[variant];
+const widths = variant === 'featured' ? [640, 960, 1280] : [320, 480, 640];
+---
+
+<!-- The whole card is the link. Hover turns it blush. -->
+<a href={article.href} class:list={['card', `card--${variant}`]}>
+  <Photo src={article.image} alt="" widths={widths} sizes={sizes} class="card__image" />
+  {
+    variant === 'home' ? (
+      <>
+        <h3 class="t-h3-card card__title">{article.title}</h3>
+        <p class="card__text">{text}</p>
+        <span class="card__more">
+          {readLabel} <span class="card__arrow" aria-hidden="true">→</span>
+        </span>
+      </>
+    ) : (
+      <div class="card__body">
+        <div class="card__meta">
+          <ReadingTime label={readingTimeLabel} minutes={article.readingTime} />
+        </div>
+        {variant === 'featured' ? <h2 class="card__title card__title--featured">{article.title}</h2> : <h3 class="t-h3-card card__title">{article.title}</h3>}
+        <p class="card__text">{text}</p>
+        <span class="card__more card__more--list">
+          {readLabel} <span class="card__arrow" aria-hidden="true">→</span>
+        </span>
+      </div>
+    )
+  }
+</a>
+
+<style>
+  .card {
+    background: var(--c-cream);
+    border-radius: var(--r-card);
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.15s ease;
+  }
+
+  .card:hover {
+    background: var(--c-blush);
+    color: inherit;
+  }
+
+  .card :global(.card__image) {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .card__text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--c-muted);
+  }
+
+  .card__arrow {
+    color: var(--c-coral);
+  }
+
+  /* ----- home ----- */
+  .card--home {
+    padding: 18px;
+    gap: 16px;
+  }
+
+  .card--home :global(.card__image) {
+    height: 190px;
+    border-radius: 20px;
+  }
+
+  .card--home .card__title {
+    margin: 0 6px;
+  }
+
+  .card--home .card__text {
+    margin: 0 6px 8px;
+  }
+
+  .card--home .card__more {
+    margin: -6px 6px 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--c-navy);
+  }
+
+  /* ----- list (articles page) ----- */
+  .card--list {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .card--list :global(.card__image) {
+    height: 190px;
+    border-radius: 20px;
+  }
+
+  .card--list .card__body {
+    padding: 0 6px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .card--list .card__text {
+    flex: 1;
+    line-height: 1.65;
+  }
+
+  .card__more--list {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--c-navy);
+  }
+
+  .card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+  }
+
+  /* ----- featured (first article on the articles page) ----- */
+  .card--featured {
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  }
+
+  .card--featured :global(.card__image) {
+    height: 100%;
+    min-height: 340px;
+  }
+
+  .card--featured .card__body {
+    padding: clamp(24px, 3.4vw, 48px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .card__title--featured {
+    font-size: clamp(26px, 2.6vw, 38px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    color: var(--c-ink);
+  }
+
+  .card--featured .card__text {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--c-body);
+  }
+
+  .card--featured .card__more--list {
+    padding-top: 4px;
+  }
+
+  @media (max-width: 760px) {
+    .card--featured {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .card--featured :global(.card__image) {
+      order: 0;
+      height: 210px;
+      min-height: 0;
+    }
+  }
+
+  /* ----- home: compact 3-up at 761–820, swipe row on mobile (the row itself is set by the page) ----- */
+  @media (min-width: 761px) and (max-width: 820px) {
+    .card--home {
+      padding: 12px;
+      gap: 12px;
+    }
+
+    .card--home :global(.card__image) {
+      height: 120px;
+      border-radius: 16px;
+    }
+
+    .card--home .card__title {
+      font-size: 17px;
+      line-height: 1.25;
+      margin: 0 4px;
+    }
+
+    .card--home .card__text {
+      font-size: 15px;
+      line-height: 1.5;
+      margin: 0 4px 6px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .card--home :global(.card__image) {
+      height: 150px;
+    }
+  }
+</style>

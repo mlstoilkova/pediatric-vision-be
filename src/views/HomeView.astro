@@ -1,0 +1,1031 @@
+---
+import Button from '../components/Button.astro';
+import Character from '../components/Character.astro';
+import Photo from '../components/Photo.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { getSingleton } from '../lib/content';
+import { getArticles, articleHref } from '../lib/articles';
+import { getClinics } from '../lib/clinics';
+import { faqHref } from '../lib/faq';
+import { pagePath } from '../i18n/routes';
+import { getUi } from '../i18n/ui';
+import type { Locale } from '../i18n/config';
+
+import bird from '../assets/characters/bird.png';
+import bird2 from '../assets/characters/bird-2.png';
+import juggler from '../assets/characters/juggler.png';
+import locationsChar from '../assets/characters/locations.png';
+import iconDrops from '../assets/characters/icon-eye-drops.png';
+import iconExam from '../assets/characters/icon-examination.png';
+import iconCap from '../assets/characters/icon-cap.png';
+import { Image } from 'astro:assets';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const c = await getSingleton('pageHome', locale);
+const ui = await getSingleton('settingsUi', locale);
+const tech = getUi(locale);
+const clinics = await getClinics(locale);
+const articles = (await getArticles(locale))
+  .filter((a) => a.showOnHome)
+  .sort((a, b) => a.homeOrder - b.homeOrder || a.order - b.order);
+
+const clinicsHref = pagePath({ page: 'clinics' }, locale);
+const conditionsHref = pagePath({ page: 'conditions' }, locale);
+const aboutHref = pagePath({ page: 'about' }, locale);
+
+// Chips link to their article, or to the articles overview when there is none (yet)
+const chips = await Promise.all(
+  c.conditions.chips.map(async (chip) => ({
+    label: chip.label,
+    href: (chip.article && (await articleHref(chip.article, locale))) || conditionsHref,
+  })),
+);
+
+const icons = [iconDrops, iconExam, iconCap];
+// Allow a line break after a slash ("Petje/zonnebril") on narrow screens
+const breakAfterSlash = (text: string) => text.split('/');
+---
+
+<!-- ================= Hero ================= -->
+<section class="hero">
+  <div class="hero__box">
+    <Photo
+      src={c.hero.image}
+      alt={c.hero.imageAlt}
+      widths={[640, 960, 1280, 1800]}
+      sizes="100vw"
+      eager
+      class="hero__img"
+    />
+    <div class="hero__layer">
+      <div class="hero__text">
+        <span class="hero__tag">{c.hero.tag}</span>
+        <h1 class="t-h1 hero__title">{c.hero.title}</h1>
+        <p class="hero__lead">{c.hero.lead}</p>
+        <div class="hero__buttons">
+          <Button href={clinicsHref} variant="primary">{ui.bookLabel}</Button>
+          <Button href="#verwachtenB" variant="secondary">{c.hero.secondaryLabel}</Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= What we can help you with ================= -->
+<section class="container section section--first">
+  <div class="sechead sechead--wide">
+    <div class="sechead__text">
+      <h2 class="t-h2">{c.conditions.title}</h2>
+      <p class="t-lead sechead__lead">{c.conditions.intro}</p>
+    </div>
+    <Character src={bird} width={164} bob={8} class="sechead__char" />
+  </div>
+  <ul class="chips">
+    {chips.map((chip) => <li><a class="chip" href={chip.href}>{chip.label}</a></li>)}
+  </ul>
+</section>
+
+<!-- ================= The first consultation ================= -->
+<section id="verwachtenB" class="container section">
+  <div class="steps">
+    <div class="steps__head">
+      <span class="steps__badge">{c.firstVisit.badge}</span>
+      <div class="steps__title">
+        <h2 class="t-h2 steps__h2">{c.firstVisit.title}</h2>
+        <p class="steps__subtitle">{c.firstVisit.subtitle}</p>
+      </div>
+    </div>
+    <ol class="steps__list">
+      {
+        c.firstVisit.steps.map((step, i) => (
+          <li class="step">
+            <span class="step__number" aria-hidden="true">{i + 1}</span>
+            <div class="step__card">
+              <div class="step__head">
+                {icons[i] && <Image src={icons[i]} alt="" width={44} densities={[1.5, 2]} class="step__icon" loading="lazy" />}
+                <h3 class="t-h3-step step__title">
+                  {breakAfterSlash(step.title).map((part, k) => (
+                    <>
+                      {k > 0 && (
+                        <>
+                          /<wbr />
+                        </>
+                      )}
+                      {part}
+                    </>
+                  ))}
+                </h3>
+              </div>
+              <p class="step__text">{step.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+    <div class="tip">
+      <Character src={juggler} width={148} class="tip__char" />
+      <div class="tip__box">
+        <p class="tip__text"><strong class="tip__lead">{c.firstVisit.tipLead}</strong><br />{c.firstVisit.tipText}</p>
+      </div>
+    </div>
+  </div>
+  <p class="faqline">
+    <span>{c.firstVisit.faqPrompt}</span>
+    <a href={faqHref(locale, c.firstVisit.faqTopic)}>{c.firstVisit.faqLabel} <span class="faqline__arrow" aria-hidden="true">→</span></a>
+  </p>
+</section>
+
+<!-- ================= About (short) ================= -->
+<section class="container section">
+  <div class="about">
+    <Photo
+      src={c.about.image}
+      alt={c.about.imageAlt}
+      widths={[340, 510, 680]}
+      sizes="(min-width: 821px) 340px, (min-width: 761px) 250px, 340px"
+      class="about__img"
+    />
+    <div class="about__text">
+      <span class="about__eyebrow">{c.about.eyebrow}</span>
+      <h2 class="t-h2 about__h2">{c.about.name}</h2>
+      {c.about.paragraphs.map((text) => <p class="about__p">{text}</p>)}
+      <Button href={aboutHref} variant="soft">{c.about.buttonLabel}</Button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Three locations ================= -->
+<section class="container section">
+  <div class="sechead sechead--locations">
+    <div class="sechead__text sechead__text--narrow">
+      <h2 class="t-h2">{c.locations.title}</h2>
+      <p class="t-lead sechead__lead sechead__lead--locations">{c.locations.intro}</p>
+    </div>
+    <Character src={locationsChar} width={166} bob={8} class="sechead__char sechead__char--locations" />
+  </div>
+  <ul class="locs">
+    {
+      clinics.map((clinic) => (
+        <li>
+          <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="loc">
+            <Photo src={clinic.photo} alt={clinic.photoAlt} widths={[320, 540, 800]} sizes="(min-width: 1101px) 30vw, (min-width: 761px) 32vw, 100vw" class="loc__img" />
+            <div class="loc__body">
+              <span class="t-eyebrow loc__city">{clinic.city}</span>
+              <h3 class="t-h3-card loc__name">{clinic.name}</h3>
+              <p class="loc__address">{clinic.addressLine1}<br />{clinic.addressLine2}</p>
+              <p class="loc__phone">✆ {clinic.phone}</p>
+              <p class="loc__book">
+                <span class="loc__book-text">{ui.bookLabel}</span><span class="loc__book-arrow" aria-hidden="true">↗</span>
+                <span class="sr-only">{tech.newTab}</span>
+              </p>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<!-- ================= Care for children's eyes ================= -->
+<section class="container articles">
+  <div class="sechead sechead--articles">
+    <div class="sechead__text sechead__text--narrow">
+      <h2 class="t-h2 articles__h2">{c.articles.title}</h2>
+      <p class="t-lead sechead__lead">{c.articles.intro}</p>
+    </div>
+    <Character src={bird2} width={164} bob={7} class="sechead__char sechead__char--articles" />
+  </div>
+  <ul class="arts">
+    {
+      articles.map((article) => (
+        <li>
+          <ArticleCard
+            article={article}
+            variant="home"
+            summary={article.homeSummary}
+            readLabel={c.articles.readLabel || ui.labels.readArticle}
+            readingTimeLabel={ui.labels.readingTime}
+          />
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  /* =============== Hero =============== */
+  .hero {
+    width: 100%;
+  }
+
+  .hero__box {
+    position: relative;
+    overflow: hidden;
+    background: #f4f2ee;
+    min-height: clamp(440px, 54vw, 640px);
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero__box :global(.hero__img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 88% center;
+  }
+
+  .hero__layer {
+    position: absolute;
+    inset: 0;
+    top: 5px;
+  }
+
+  .hero__text {
+    margin: clamp(26px, 4vw, 64px) clamp(22px, 5vw, 80px);
+    max-width: 26em;
+    padding-block: 54px;
+  }
+
+  .hero__tag {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 7px 15px;
+    border: 1px solid var(--c-navy);
+    border-radius: var(--r-pill);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--c-navy);
+    white-space: nowrap;
+  }
+
+  .hero__title {
+    margin: 0 0 14px;
+    max-width: 605px;
+  }
+
+  .hero__lead {
+    margin: 18px 0;
+    font-size: clamp(16px, 1.2vw, 19px);
+    line-height: 1.6;
+    color: var(--c-navy);
+  }
+
+  .hero__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  @media (min-width: 761px) and (max-width: 1100px) {
+    .hero__box {
+      min-height: max(490px, 53vw);
+    }
+
+    .hero__box :global(.hero__img) {
+      object-position: calc(88% + 30px) center;
+    }
+
+    .hero__lead {
+      max-width: 19em;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .hero__box {
+      display: block;
+      min-height: 0;
+      background: var(--c-page);
+      position: relative;
+    }
+
+    .hero__box :global(.hero__img) {
+      position: relative;
+      inset: auto;
+      width: 100%;
+      height: 300px;
+      object-position: 90% center;
+    }
+
+    .hero__layer {
+      position: static;
+      inset: auto;
+      top: auto;
+    }
+
+    .hero__text {
+      margin: 0;
+      padding: 28px 22px 36px;
+      max-width: none;
+    }
+
+    .hero__tag {
+      white-space: normal;
+    }
+
+    .hero__title {
+      font-size: clamp(25px, 7.2vw, 34px);
+      line-height: 1.16;
+      overflow-wrap: break-word;
+    }
+
+    /* a hairline that fades at both ends closes the hero */
+    .hero__box::after {
+      content: '';
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(27, 62, 112, 0.18) 18%, rgba(27, 62, 112, 0.18) 82%, transparent);
+    }
+  }
+
+  /* =============== Sections =============== */
+  .section {
+    padding-top: var(--section-top);
+  }
+
+  .section--first {
+    padding-top: var(--section-top);
+  }
+
+  @media (max-width: 760px) {
+    .section--first {
+      padding-top: 44px;
+    }
+  }
+
+  /* Section heading with a character */
+  .sechead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    position: relative;
+  }
+
+  .sechead--wide {
+    gap: 20px 32px;
+    margin-bottom: 40px;
+  }
+
+  .sechead--locations,
+  .sechead--articles {
+    margin-bottom: 34px;
+  }
+
+  .sechead__text {
+    flex: 1 1 380px;
+    min-width: 0;
+  }
+
+  .sechead__text :global(.t-h2) {
+    margin-bottom: 14px;
+  }
+
+  .sechead__text--narrow {
+    flex: 0 1 auto;
+    max-width: 32em;
+  }
+
+  .sechead__lead {
+    max-width: 30em;
+    line-height: 1.6;
+  }
+
+  .sechead__lead--locations {
+    max-width: 540px;
+  }
+
+  .sechead--articles .sechead__lead {
+    max-width: none;
+  }
+
+  .sechead__text :global(.articles__h2) {
+    margin-top: -40px;
+  }
+
+  .sechead :global(.sechead__char--locations) {
+    margin: -30px 0;
+  }
+
+  /* Mobile and tablet-768: the character moves to the top right of the heading */
+  @media (max-width: 820px) {
+    .sechead {
+      display: block;
+      margin-bottom: 28px;
+    }
+
+    .sechead__text :global(.t-h2),
+    .sechead__lead {
+      padding-right: 110px;
+    }
+
+    .sechead :global(.character) {
+      position: absolute;
+      top: -14px;
+      right: -6px;
+      width: 100px !important;
+      margin: 0 !important;
+    }
+
+    .sechead--articles :global(.character) {
+      top: -4px;
+    }
+
+    .sechead__text :global(.articles__h2) {
+      margin-top: 0;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .sechead__text :global(.t-h2),
+    .sechead__lead {
+      padding-right: 84px;
+    }
+
+    .sechead :global(.character) {
+      width: 80px !important;
+    }
+  }
+
+  /* =============== Condition chips =============== */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .chip {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 18px 26px;
+    border-radius: var(--r-pill);
+    background: var(--c-cream);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--c-ink);
+    transition: background-color 0.15s ease;
+  }
+
+  .chip:hover {
+    background: var(--c-coral);
+    color: var(--c-ink);
+  }
+
+  @media (max-width: 1100px) {
+    .chips {
+      gap: 8px;
+    }
+
+    .chip {
+      height: 44px;
+      padding: 0 16px;
+      font-size: 15px;
+    }
+  }
+
+  /* =============== First consultation =============== */
+  .steps {
+    background: var(--c-mint);
+    border-radius: var(--r-panel);
+    padding: clamp(28px, 4vw, 60px);
+  }
+
+  .steps__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 14px 28px;
+    margin-bottom: clamp(34px, 4.5vw, 56px);
+  }
+
+  .steps__badge {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: var(--r-pill);
+    background: var(--c-coral);
+    font-size: clamp(14px, 1.1vw, 16px);
+    font-weight: 700;
+    color: var(--c-ink);
+    white-space: nowrap;
+  }
+
+  .steps__title {
+    flex: 1 1 320px;
+    min-width: 0;
+  }
+
+  .steps__h2 {
+    line-height: 1.04;
+  }
+
+  .steps__subtitle {
+    margin-top: 6px;
+    font-size: clamp(19px, 2vw, 28px);
+    line-height: 1.2;
+    font-weight: 400;
+    color: var(--c-ink);
+  }
+
+  .steps__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+    gap: clamp(20px, 2.4vw, 36px);
+    padding: 12px 0 0 34px;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  .step {
+    position: relative;
+  }
+
+  .step__number {
+    position: absolute;
+    left: -12px;
+    top: -22px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: var(--c-badge);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--c-ink);
+  }
+
+  .step__card {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    padding: 26px 20px;
+    border-radius: var(--r-step);
+    background: var(--c-cream);
+  }
+
+  /* the prototype gives cards 2 and 3 a taller bottom padding than card 1 */
+  .step:not(:first-child) .step__card {
+    padding-bottom: 30px;
+  }
+
+  .step__head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-left: 8px;
+  }
+
+  .step__head :global(.step__icon) {
+    width: 44px;
+    height: auto;
+    flex: 0 0 auto;
+  }
+
+  /* Titles 1 and 2 keep the default line height; title 3 is tighter and may shrink (as in the prototype) */
+  .step__title {
+    line-height: normal;
+  }
+
+  .step:nth-child(3) .step__title {
+    min-width: 0;
+    line-height: 1.2;
+  }
+
+  .step__text {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--c-muted);
+  }
+
+  .tip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0 clamp(16px, 2vw, 32px);
+    margin-top: clamp(26px, 3vw, 44px);
+  }
+
+  .tip :global(.tip__char) {
+    width: 148px;
+    margin-top: -22px;
+  }
+
+  .tip__box {
+    flex: 1 1 320px;
+    min-width: 0;
+    padding: clamp(22px, 2.4vw, 34px) clamp(24px, 3vw, 44px);
+    border-radius: var(--r-step);
+    background: rgba(255, 253, 250, 0.42);
+  }
+
+  .tip__text {
+    font-size: clamp(16px, 1.3vw, 19px);
+    line-height: 1.6;
+    color: var(--c-body);
+  }
+
+  .tip__lead {
+    font-weight: inherit;
+    color: inherit;
+  }
+
+  .faqline {
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4px 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--c-body);
+    text-align: center;
+  }
+
+  .faqline a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    font-weight: 600;
+    color: var(--c-navy);
+  }
+
+  .faqline__arrow {
+    color: var(--c-coral);
+  }
+
+  /* Tablet: 2 x 2, the tip fills the fourth cell */
+  @media (min-width: 761px) and (max-width: 1100px) {
+    .steps {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 40px 24px;
+    }
+
+    .steps__head {
+      grid-column: 1 / -1;
+      margin-bottom: 0;
+    }
+
+    .steps__list {
+      display: contents;
+    }
+
+    .tip {
+      margin: 0;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .tip :global(.tip__char) {
+      width: 110px;
+      margin: 0;
+    }
+
+    .tip__box {
+      flex: 0 0 auto;
+      width: 100%;
+      padding: 22px 20px;
+    }
+  }
+
+  /* Mobile: one column; the tip character floats right and the text wraps around it */
+  @media (max-width: 760px) {
+    .steps {
+      padding: 28px 16px 24px;
+    }
+
+    .steps__list {
+      grid-template-columns: minmax(0, 1fr);
+      padding-left: 12px;
+      gap: 36px;
+    }
+
+    .step__text {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .steps__subtitle {
+      font-size: clamp(17px, 4.6vw, 21px);
+    }
+
+    .tip {
+      display: block;
+      margin-top: 28px;
+    }
+
+    .tip::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .tip :global(.tip__char) {
+      float: right;
+      width: 104px;
+      margin: 0 -4px 4px 14px;
+      shape-outside: margin-box;
+    }
+
+    .tip__box {
+      background: none;
+      padding: 6px 0 0;
+      border-radius: 0;
+    }
+
+    .tip__text {
+      font-size: 15.5px;
+      line-height: 1.6;
+    }
+
+    .tip__lead {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 18px;
+      line-height: 1.3;
+      font-weight: 700;
+      color: var(--c-ink);
+    }
+
+    .tip__lead + br {
+      display: none;
+    }
+  }
+
+  /* =============== About (short) =============== */
+  .about {
+    position: relative;
+    display: grid;
+    grid-template-columns: 340px minmax(0, 1fr);
+    gap: clamp(24px, 3vw, 40px);
+    align-items: center;
+    padding: clamp(24px, 3vw, 44px);
+    border-radius: var(--r-panel);
+    background: var(--c-cream);
+  }
+
+  .about :global(.about__img) {
+    width: 340px;
+    height: 340px;
+    border-radius: var(--r-photo);
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .about__text {
+    position: relative;
+    min-width: 0;
+  }
+
+  .about__eyebrow {
+    display: block;
+    margin-bottom: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--c-navy);
+  }
+
+  .about__h2 {
+    margin-bottom: 18px;
+  }
+
+  .about__p {
+    margin-bottom: 16px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--c-body);
+  }
+
+  .about__p:last-of-type {
+    margin-bottom: 26px;
+  }
+
+  .about__text :global(.btn--soft) {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 820px) {
+    .about {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 761px) and (max-width: 820px) {
+    .about {
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .about :global(.about__img) {
+      width: 250px;
+      height: 250px;
+      align-self: start;
+    }
+
+    .about__h2 {
+      margin-bottom: 14px;
+    }
+
+    .about__p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .about :global(.about__img) {
+      width: 100%;
+      height: auto;
+      max-width: 340px;
+      aspect-ratio: 1 / 1;
+    }
+  }
+
+  /* =============== Locations =============== */
+  .locs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+    gap: 18px;
+  }
+
+  .loc {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border-radius: var(--r-card);
+    background: var(--c-cream);
+    transition: background-color 0.15s ease;
+  }
+
+  .loc:hover {
+    background: var(--c-blush);
+    color: inherit;
+  }
+
+  .loc :global(.loc__img) {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .loc__body {
+    padding: 26px;
+  }
+
+  .loc__city {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .loc__name {
+    margin-bottom: 10px;
+    line-height: normal; /* the prototype leaves it unset on these titles */
+  }
+
+  .loc__address {
+    margin-bottom: 6px;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--c-muted);
+  }
+
+  .loc__phone {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--c-navy);
+  }
+
+  .loc__book {
+    padding-block: 9px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--c-navy);
+  }
+
+  .loc__book-text,
+  .loc__book-arrow {
+    text-decoration: underline;
+  }
+
+  .loc__book-text {
+    font-weight: normal;
+  }
+
+  .loc__book-arrow {
+    font-weight: 400;
+  }
+
+  @media (min-width: 761px) and (max-width: 820px) {
+    .locs {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .loc :global(.loc__img) {
+      height: 120px;
+    }
+
+    .loc__body {
+      padding: 18px;
+    }
+
+    .loc__name {
+      font-size: 17px;
+      line-height: 1.25;
+    }
+
+    .loc__address,
+    .loc__phone,
+    .loc__book {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .locs {
+      gap: 12px;
+    }
+
+    .loc :global(.loc__img) {
+      height: 110px;
+    }
+
+    .loc__body {
+      padding: 18px 22px 20px;
+    }
+  }
+
+  /* =============== Articles on the mint-light panel =============== */
+  .articles {
+    max-width: var(--max-width);
+    margin: var(--section-top) auto 0;
+    padding: clamp(28px, 4vw, 60px) var(--pad-x) var(--section-top);
+    background: var(--c-mint-light);
+    border-radius: var(--r-panel);
+    position: relative;
+  }
+
+  .arts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(276px, 1fr));
+    gap: 18px;
+  }
+
+  @media (min-width: 761px) and (max-width: 820px) {
+    .arts {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+  }
+
+  /* Mobile: a swipe row with snapping, cards 78% wide */
+  @media (max-width: 760px) {
+    .arts {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 0 22px;
+      gap: 12px;
+      margin: 0 -22px;
+      padding: 0 22px 6px;
+      scrollbar-width: none;
+    }
+
+    .arts::-webkit-scrollbar {
+      display: none;
+    }
+
+    .arts > li {
+      flex: 0 0 78%;
+      scroll-snap-align: start;
+      display: flex;
+    }
+
+    .arts > li > :global(a) {
+      flex: 1;
+    }
+  }
+</style>

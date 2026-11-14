@@ -1,0 +1,168 @@
+---
+interface Props {
+  /** Already rendered HTML from src/lib/markdown.ts */
+  html: string;
+  /** article: 17px text in a reading column · faq: 16.5px inside an answer · plain: the privacy policy */
+  size?: 'article' | 'faq';
+}
+const { html, size = 'article' } = Astro.props;
+---
+
+<!-- Text written in the admin (Markdown), shown with the site's bullets and headings. -->
+<div class:list={['prose', `prose--${size}`]} set:html={html} />
+
+<style>
+  .prose {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .prose :global(p),
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 0;
+  }
+
+  .prose :global(strong) {
+    font-weight: 600;
+    color: var(--c-ink);
+  }
+
+  .prose :global(a) {
+    color: var(--c-navy);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Lists: coral dots; nested items get hollow navy dots */
+  .prose :global(ul) {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .prose :global(ul > li) {
+    display: grid;
+    grid-template-columns: 8px minmax(0, 1fr);
+    gap: var(--list-gap, 10px) 12px;
+    align-items: baseline;
+  }
+
+  .prose :global(ul > li)::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--c-coral);
+    transform: translateY(-2px);
+  }
+
+  .prose :global(ul > li > ul) {
+    grid-column: 1 / -1;
+    padding-left: 22px;
+  }
+
+  .prose :global(ul ul > li) {
+    grid-template-columns: 6px minmax(0, 1fr);
+    color: var(--c-muted);
+  }
+
+  .prose :global(ul ul > li)::before {
+    width: 6px;
+    height: 6px;
+    background: none;
+    border: 1.5px solid var(--c-navy);
+  }
+
+  /* Numbered lists look like the nested items in the prototype (small, muted, hollow dot) but keep their number inline */
+  .prose :global(ol) {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    counter-reset: item;
+  }
+
+  .prose :global(ol > li) {
+    position: relative;
+    padding-left: 40px;
+    counter-increment: item;
+    color: var(--c-muted);
+  }
+
+  .prose :global(ol > li)::before {
+    content: counter(item) '. ';
+  }
+
+  .prose :global(ol > li)::after {
+    content: '';
+    position: absolute;
+    left: 22px;
+    top: 0.65em;
+    width: 6px;
+    height: 6px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: 1.5px solid var(--c-navy);
+  }
+
+  /* ----- article text: 17px / 1.7 in a 720px column ----- */
+  .prose--article {
+    --list-gap: 10px;
+    gap: 18px;
+  }
+
+  .prose--article :global(h2) {
+    margin: 22px 0 0;
+    font-size: clamp(22px, 2vw, 28px);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    color: var(--c-ink);
+  }
+
+  .prose--article :global(p) {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--c-body);
+  }
+
+  .prose--article :global(ul),
+  .prose--article :global(ol) {
+    gap: var(--list-gap);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--c-body);
+  }
+
+  .prose--article :global(ul ul),
+  .prose--article :global(ul ul > li),
+  .prose--article :global(ol),
+  .prose--article :global(ol > li) {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ----- FAQ answers: 16.5px ----- */
+  .prose--faq {
+    --list-gap: 8px;
+    gap: 12px;
+    max-width: 44em;
+  }
+
+  .prose--faq :global(p) {
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--c-body);
+  }
+
+  .prose--faq :global(ul),
+  .prose--faq :global(ol) {
+    gap: var(--list-gap);
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--c-body);
+  }
+</style>

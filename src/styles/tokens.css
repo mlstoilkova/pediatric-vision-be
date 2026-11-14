@@ -33,7 +33,7 @@
   --pad-x: 40px;
   --section-top: clamp(56px, 7vw, 96px);
   --page-gutter: 6px; /* the design sits inside a 6px frame */
-  --header-offset: 120px; /* anchor scroll offset for the sticky header */
+  --header-offset: 150px; /* anchor scroll offset for the sticky header (120px on mobile, where the header is shorter) */
 
   /* Radius */
   --r-pill: 999px;
@@ -45,6 +45,12 @@
 
   /* Depth: flat, except floating menus */
   --shadow-float: 0 16px 38px rgba(20, 36, 61, 0.16);
+}
+
+@media (max-width: 760px) {
+  :root {
+    --header-offset: 120px;
+  }
 }
 
 @media (max-width: 640px) {

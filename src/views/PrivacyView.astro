@@ -1,0 +1,32 @@
+---
+import Prose from '../components/Prose.astro';
+import { getSingleton } from '../lib/content';
+import { renderMarkdown } from '../lib/markdown';
+import type { Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const page = await getSingleton('legal', locale);
+const html = renderMarkdown(page.body);
+---
+
+<article class="container privacy">
+  <h1 class="t-page-h1">{page.title}</h1>
+  {html && <div class="privacy__body"><Prose html={html} size="article" /></div>}
+</article>
+
+<style>
+  .privacy {
+    padding-top: clamp(36px, 5vw, 72px);
+    padding-bottom: var(--section-top);
+    min-height: 40vh;
+  }
+
+  .privacy__body {
+    max-width: 720px;
+    margin-top: clamp(24px, 3vw, 40px);
+  }
+</style>

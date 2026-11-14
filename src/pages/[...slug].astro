@@ -1,23 +1,44 @@
 ---
 import Base from '../layouts/Base.astro';
+import HomeView from '../views/HomeView.astro';
+import ClinicsView from '../views/ClinicsView.astro';
+import ConditionsView from '../views/ConditionsView.astro';
+import ArticleView from '../views/ArticleView.astro';
+import AboutView from '../views/AboutView.astro';
+import FaqView from '../views/FaqView.astro';
+import PrivacyView from '../views/PrivacyView.astro';
 import { locales } from '../i18n/config';
 import { pageKeys, pageSlugParam, type PageKey } from '../i18n/routes';
 import { assertContentIntegrity, getSingleton } from '../lib/content';
+import { getArticles, getArticleSlugs } from '../lib/articles';
 
-// One route generates every page in every language from the table in src/i18n/routes.ts.
-// Step 3 renders a placeholder per page (title and lead come from the content files);
-// the real pages replace it one by one in step 4.
+// One route generates every page in every language from the table in src/i18n/routes.ts,
+// plus one page per article per language. The pages not built yet render a placeholder.
 export async function getStaticPaths() {
   await assertContentIntegrity(); // a broken link between content stops the build
-  return locales.flatMap((locale) =>
+  const pages = locales.flatMap((locale) =>
     pageKeys.map((page) => ({
       params: { slug: pageSlugParam(page, locale) },
-      props: { locale, page },
+      props: { locale, page, articleId: undefined as string | undefined },
     })),
   );
+  const articles = (
+    await Promise.all(
+      locales.map(async (locale) =>
+        (await getArticles(locale)).map((article) => ({
+          params: { slug: `${pageSlugParam('conditions', locale)}/${article.slug}` },
+          props: { locale, page: 'conditions' as PageKey, articleId: article.id as string | undefined },
+        })),
+      ),
+    )
+  ).flat();
+  return [...pages, ...articles];
 }
 
-const { locale, page } = Astro.props;
+const { locale, page, articleId } = Astro.props;
+
+const article = articleId ? (await getArticles(locale)).find((a) => a.id === articleId) : undefined;
+const articleSlugs = articleId ? await getArticleSlugs(articleId) : undefined;
 
 async function titleAndLead(key: PageKey) {
   switch (key) {
@@ -47,30 +68,38 @@ async function titleAndLead(key: PageKey) {
     }
   }
 }
-const { title, lead } = await titleAndLead(page);
+const base = await titleAndLead(page);
+const title = article?.title ?? base.title;
+const lead = article?.summary ?? base.lead;
 
-// The closing CTA is not shown on the clinics and articles pages
-const showCta = page !== 'clinics' && page !== 'conditions';
+// The closing CTA is not shown on the clinics and articles overview pages
+const showCta = article ? true : page !== 'clinics' && page !== 'conditions';
 ---
 
 <Base
   locale={locale}
-  page={{ page }}
+  page={{ page, articleSlugs }}
   title={title}
   description={lead || undefined}
   showCta={showCta}
   ctaFaqLink={page !== 'faq'}
   ctaTight={page === 'home'}
 >
-  <div class="placeholder container">
-    <h1 class="t-page-h1">{title}</h1>
-  </div>
-</Base>
-
-<style>
-  .placeholder {
-    min-height: 40vh;
-    padding-top: var(--section-top);
-    padding-bottom: var(--section-top);
+  {
+    article ? (
+      <ArticleView locale={locale} article={article} />
+    ) : page === 'home' ? (
+      <HomeView locale={locale} />
+    ) : page === 'clinics' ? (
+      <ClinicsView locale={locale} />
+    ) : page === 'conditions' ? (
+      <ConditionsView locale={locale} />
+    ) : page === 'about' ? (
+      <AboutView locale={locale} />
+    ) : page === 'faq' ? (
+      <FaqView locale={locale} />
+    ) : (
+      <PrivacyView locale={locale} />
+    )
   }
-</style>
+</Base>

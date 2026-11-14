@@ -50,6 +50,16 @@ img {
   max-width: 100%;
 }
 
+/* <picture> is only a wrapper: its image takes part in the layout directly */
+picture {
+  display: contents;
+}
+
+/* <source> must never take part in the layout (it did, as an empty grid row) */
+picture > source {
+  display: none;
+}
+
 button {
   font-family: inherit;
   cursor: pointer;
@@ -137,7 +147,7 @@ button {
 
 .t-h3-step {
   font-size: clamp(20px, 1.7vw, 26px);
-  line-height: 1.2;
+  line-height: normal; /* the prototype leaves it unset */
   font-weight: 700;
   color: var(--c-ink);
 }
@@ -163,7 +173,7 @@ button {
 
 .t-eyebrow {
   font-size: 13px; /* 13px is the floor for text */
-  line-height: 1.4;
+  line-height: normal;
   font-weight: 700;
   letter-spacing: 0.11em;
   text-transform: uppercase;
@@ -180,8 +190,41 @@ button {
   .t-h2 {
     font-size: clamp(25px, 7.2vw, 34px);
     line-height: 1.16;
-    hyphens: manual;
     overflow-wrap: break-word;
+  }
+}
+
+/* The prototype sets every h2 to the hero size on mobile, and shrinks card and step titles. */
+@media (max-width: 760px) {
+  h2 {
+    font-size: clamp(25px, 7.2vw, 34px) !important;
+    line-height: 1.16 !important;
+    overflow-wrap: break-word;
+  }
+
+  .t-h3-step {
+    font-size: clamp(19px, 5.2vw, 22px);
+  }
+
+  .t-h3-card {
+    font-size: clamp(18px, 5vw, 20px);
+  }
+}
+
+/*
+  Hyphenation. The English and French prototype pages have a lang attribute, so their headings hyphenate
+  (hyphens: auto) in the places the design asks for it. The Dutch prototype has no lang attribute, so its
+  headings never did. Same here: Dutch stays unhyphenated, English and French follow the design.
+*/
+html:not([lang='nl']) .t-page-h1 {
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 760px) {
+  html:not([lang='nl']) h2,
+  html:not([lang='nl']) .t-h1 {
+    hyphens: auto;
   }
 }
 

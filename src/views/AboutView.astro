@@ -1,0 +1,426 @@
+---
+import Button from '../components/Button.astro';
+import Character from '../components/Character.astro';
+import Photo from '../components/Photo.astro';
+import { getSingleton } from '../lib/content';
+import { pagePath } from '../i18n/routes';
+import type { Locale } from '../i18n/config';
+
+import starHat from '../assets/characters/star-hat.png';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const c = await getSingleton('pageAbout', locale);
+const ui = await getSingleton('settingsUi', locale);
+const clinicsHref = pagePath({ page: 'clinics' }, locale);
+---
+
+<!-- ================= Profile ================= -->
+<section class="container profile-section">
+  <div class="profile">
+    <Photo
+      src={c.hero.image}
+      alt={c.hero.imageAlt}
+      widths={[320, 480, 640, 800]}
+      sizes="(min-width: 1281px) 320px, (min-width: 761px) 25vw, 100vw"
+      eager
+      class="profile__img"
+    />
+    <div class="profile__text">
+      <span class="t-eyebrow">{c.hero.eyebrow}</span>
+      <h1 class="t-profile-h1 profile__h1">{c.hero.name}</h1>
+      <p class="profile__subtitle">{c.hero.subtitle}</p>
+      <p class="t-lead">{c.hero.intro}</p>
+      <div class="profile__buttons">
+        <Button href={clinicsHref} variant="primary">{ui.bookLabel}</Button>
+        <Button href="#publicaties" variant="secondary">{c.hero.researchLabel}</Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Three facts ================= -->
+<section class="container facts-section">
+  <ul class="facts">
+    {
+      c.facts.map((fact) => (
+        <li class="fact">
+          <span class="fact__title">{fact.title}</span>
+          <span class="fact__text">{fact.text}</span>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<!-- ================= What I treat ================= -->
+<section class="container section">
+  <div class="intro">
+    <h2 class="t-h2">{c.treatments.title}</h2>
+    <p class="t-lead">{c.treatments.intro}</p>
+  </div>
+  <ul class="cards">
+    {
+      c.treatments.cards.map((card) => (
+        <li class="tcard">
+          <span class="t-eyebrow">{card.label}</span>
+          <h3 class="t-h3-step">{card.title}</h3>
+          <p class="t-body">{card.text}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<!-- ================= Training and experience ================= -->
+<section class="container section">
+  <div class="panel">
+    <div class="panel__head">
+      <div class="panel__intro">
+        <h2 class="t-h2">{c.education.title}</h2>
+        <p class="panel__lead">{c.education.intro}</p>
+      </div>
+    </div>
+    <dl class="timeline">
+      {
+        c.education.rows.map((row) => (
+          <div class="row">
+            <dt class="row__label">{row.label}</dt>
+            <dd class="row__value">
+              {row.value}
+              {row.tags && row.tags.length > 0 && (
+                <ul class="tags">
+                  {row.tags.map((tag) => <li class="tag">{tag}</li>)}
+                </ul>
+              )}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<!-- ================= My approach ================= -->
+<section class="container section">
+  <div class="approach">
+    <Character src={starHat} width={170} bob={8} class="approach__char" />
+    <div class="approach__text">
+      <span class="t-eyebrow">{c.approach.eyebrow}</span>
+      <p class="approach__statement">{c.approach.statement}</p>
+      <p class="t-lead">{c.approach.text}</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Research and publications ================= -->
+<section id="publicaties" class="container section publications">
+  <div class="publications__grid">
+    <div class="publications__text">
+      <h2 class="t-h2">{c.research.title}</h2>
+      {c.research.paragraphs.map((text, i) => <p class={i === 0 ? 't-lead' : 't-body'}>{text}</p>)}
+    </div>
+    <a class="pubmed" href={c.research.card.linkUrl} target="_blank" rel="noopener">
+      <span class="t-eyebrow">{c.research.card.eyebrow}</span>
+      <h3 class="t-h3-card">{c.research.card.title}</h3>
+      <p class="t-body">{c.research.card.text}</p>
+      <span class="pubmed__link"><u>{c.research.card.linkLabel}</u>↗</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding-top: var(--section-top);
+  }
+
+  /* ----- profile ----- */
+  .profile-section {
+    padding-top: clamp(36px, 5vw, 72px);
+  }
+
+  .profile {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.6fr);
+    gap: clamp(28px, 4vw, 64px);
+    align-items: center;
+  }
+
+  .profile :global(.profile__img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: var(--r-card);
+  }
+
+  .profile__text {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 0;
+  }
+
+  .profile__h1 {
+    overflow-wrap: break-word;
+  }
+
+  :global(html:not([lang='nl'])) .profile__h1 {
+    hyphens: auto;
+  }
+
+  .profile__subtitle {
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.45;
+    font-weight: 500;
+    color: var(--c-navy);
+  }
+
+  .profile__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 4px;
+  }
+
+  @media (max-width: 760px) {
+    .profile {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .profile :global(.profile__img) {
+      order: 0;
+      height: 210px;
+      min-height: 0;
+    }
+  }
+
+  /* ----- facts ----- */
+  .facts-section {
+    padding-top: clamp(40px, 5vw, 64px);
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 16px;
+  }
+
+  .fact {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 26px 28px;
+    border-radius: var(--r-card);
+    background: var(--c-cream);
+  }
+
+  .fact__title {
+    font-size: clamp(22px, 2vw, 26px);
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--c-ink);
+  }
+
+  .fact__text {
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--c-body);
+  }
+
+  /* ----- what I treat ----- */
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 44em;
+    margin-bottom: 34px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: 18px;
+  }
+
+  .tcard {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: clamp(24px, 3vw, 36px);
+    border-radius: var(--r-card);
+    background: var(--c-cream);
+  }
+
+  /* ----- training and experience ----- */
+  .panel {
+    padding: clamp(28px, 4vw, 60px);
+    border-radius: var(--r-panel);
+    background: var(--c-mint);
+  }
+
+  .panel__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .panel__intro {
+    max-width: 36em;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .panel__lead {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--c-ink);
+  }
+
+  /* In the prototype this heading shares the section-heading rules (room for a character that is not there) */
+  @media (max-width: 820px) {
+    .panel__head {
+      display: block;
+      margin-bottom: 28px;
+    }
+
+    .panel__intro :global(.t-h2),
+    .panel__lead {
+      padding-right: 110px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .panel__intro :global(.t-h2),
+    .panel__lead {
+      padding-right: 84px;
+    }
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+    gap: 24px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(27, 62, 112, 0.14);
+  }
+
+  .row__label {
+    padding-top: 3px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--c-navy);
+  }
+
+  .row__value {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--c-ink);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    padding: 7px 14px;
+    border-radius: var(--r-pill);
+    background: rgba(255, 253, 250, 0.5);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--c-body);
+  }
+
+  @media (max-width: 760px) {
+    .row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 4px;
+    }
+  }
+
+  /* ----- approach ----- */
+  .approach {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 24px 48px;
+    max-width: 980px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .approach :global(.approach__char) {
+    width: clamp(110px, 12vw, 170px);
+  }
+
+  .approach__text {
+    flex: 1 1 380px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .approach__statement {
+    font-size: clamp(22px, 2.4vw, 32px);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    color: var(--c-ink);
+  }
+
+  /* ----- publications ----- */
+  .publications__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+    gap: clamp(24px, 4vw, 56px);
+    align-items: start;
+  }
+
+  .publications__text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .pubmed {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: clamp(24px, 3vw, 36px);
+    border-radius: var(--r-card);
+    background: var(--c-cream);
+    transition: background-color 0.15s ease;
+  }
+
+  .pubmed:hover {
+    background: var(--c-blush);
+    color: inherit;
+  }
+
+  .pubmed__link {
+    padding-top: 6px;
+    font-size: 16px;
+    color: var(--c-navy);
+  }
+</style>

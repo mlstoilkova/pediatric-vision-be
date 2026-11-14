@@ -1,0 +1,264 @@
+---
+import PageHead from '../components/PageHead.astro';
+import Prose from '../components/Prose.astro';
+import { getSingleton } from '../lib/content';
+import { getFaq } from '../lib/faq';
+import { pagePath } from '../i18n/routes';
+import type { Locale } from '../i18n/config';
+
+import questionChar from '../assets/characters/question-glasses.png';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const c = await getSingleton('pageFaq', locale);
+const topics = await getFaq(locale);
+const clinicsHref = pagePath({ page: 'clinics' }, locale);
+---
+
+<section class="container head">
+  <PageHead
+    eyebrow={c.header.eyebrow}
+    title={c.header.title}
+    lead={c.header.lead}
+    character={questionChar}
+    characterWidth={120}
+    characterSize="clamp(84px, 9vw, 120px)"
+  />
+</section>
+
+<section class="container body">
+  <div class="layout">
+    <aside class="side">
+      <span class="t-eyebrow side__label">{c.topicsLabel}</span>
+      <nav class="topics" aria-label={c.topicsLabel}>
+        {topics.map((topic) => <a href={`#${topic.id}`}>{topic.title}</a>)}
+      </nav>
+      <div class="help">
+        <p class="help__text">{c.help.text}</p>
+        <a class="help__link" href={clinicsHref}>{c.help.linkLabel} <span class="help__arrow" aria-hidden="true">→</span></a>
+      </div>
+    </aside>
+
+    <div class="groups">
+      {
+        topics.map((topic) => (
+          <div id={topic.id} class="group">
+            <h2 class="group__title">{topic.title}</h2>
+            {topic.questions.map((q) => (
+              <details class="item">
+                <summary class="item__q">
+                  <span class="item__text">{q.question}</span>
+                  <span class="item__plus" aria-hidden="true">+</span>
+                </summary>
+                <div class="item__a">
+                  <Prose html={q.html} size="faq" />
+                </div>
+              </details>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .head {
+    padding-top: clamp(36px, 5vw, 72px);
+  }
+
+  .body {
+    padding-top: clamp(36px, 4vw, 56px);
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 250px) minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 64px);
+    align-items: start;
+  }
+
+  .side {
+    position: sticky;
+    top: 170px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .side__label {
+    display: block;
+  }
+
+  .topics {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .topics a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--c-navy);
+  }
+
+  .topics a:hover {
+    background: var(--c-blush);
+  }
+
+  .help {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 22px;
+    border-radius: 22px;
+    background: var(--c-mint);
+  }
+
+  .help__text {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--c-ink);
+  }
+
+  .help__link {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--c-navy);
+  }
+
+  .help__arrow {
+    color: var(--c-coral);
+  }
+
+  .groups {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(40px, 5vw, 64px);
+    min-width: 0;
+  }
+
+  .group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .group__title {
+    margin-bottom: 8px;
+    font-size: clamp(24px, 2.4vw, 32px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    color: var(--c-ink);
+  }
+
+  /* Native <details>: works without JavaScript, keyboard and screen-reader friendly */
+  .item {
+    border-radius: 22px;
+    background: var(--c-cream);
+  }
+
+  .item__q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 44px;
+    padding: 20px 22px;
+    cursor: pointer;
+    list-style: none;
+    font-size: clamp(16.5px, 1.4vw, 18px);
+    line-height: 1.4;
+    font-weight: 600;
+    color: var(--c-ink);
+  }
+
+  .item__q::-webkit-details-marker {
+    display: none;
+  }
+
+  .item__q:focus-visible {
+    outline: 2px solid var(--c-navy);
+    outline-offset: 3px;
+    border-radius: 22px;
+  }
+
+  .item__text {
+    min-width: 0;
+  }
+
+  .item__plus {
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--c-peach);
+    color: var(--c-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+    transition:
+      transform 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .item[open] .item__plus {
+    transform: rotate(45deg);
+    background: var(--c-coral);
+  }
+
+  /* 44em includes the 22px padding on each side (as in the prototype) */
+  .item__a {
+    padding: 0 22px 22px;
+    max-width: 44em;
+  }
+
+  .item__a :global(.prose--faq) {
+    max-width: none;
+  }
+
+  /* Mobile: topics become a row of pills above the questions; the label and help box are hidden */
+  @media (max-width: 760px) {
+    .layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+    }
+
+    .side {
+      position: static;
+    }
+
+    .topics {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .topics a {
+      background: var(--c-cream);
+      border-radius: var(--r-pill);
+    }
+
+    .side__label,
+    .help {
+      display: none;
+    }
+  }
+</style>
